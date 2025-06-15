@@ -57,7 +57,7 @@
     {
       "binding": "HYPERDRIVE",
       "id": "8ba4508b28cf42f987f3533c1f09433c",
-      "localConnectionString": "postgresql://postgres:postgres@localhost:5432/mksaas-template"
+      "localConnectionString": "postgresql://postgres:postgres@localhost:5432/postgres"
     }
   ],
 
