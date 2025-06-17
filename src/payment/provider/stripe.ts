@@ -48,7 +48,13 @@ export class StripeProvider implements PaymentProvider {
     }
 
     // Initialize Stripe without specifying apiVersion to use default/latest version
-    this.stripe = new Stripe(apiKey);
+    // https://opennext.js.org/cloudflare/howtos/stripeAPI
+    // When creating a Stripe object, the default http client implementation is based on
+    // node:https which is not implemented on Workers.
+    this.stripe = new Stripe(apiKey, {
+      // Cloudflare Workers use the Fetch API for their API requests.
+      httpClient: Stripe.createFetchHttpClient(),
+    });
     this.webhookSecret = webhookSecret;
   }
 
