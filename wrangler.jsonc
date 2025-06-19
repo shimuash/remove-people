@@ -11,6 +11,8 @@
     // Enable Node.js API
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
     "nodejs_compat",
+    // This also enables nodejs_compat_v2 as long as compatibility date is 2024-09-23 or later.
+    // https://developers.cloudflare.com/workers/configuration/compatibility-dates/#nodejs-compatibility-flag
     // Enable improved Node.js API with polyfills and native code
     // see https://blog.cloudflare.com/zh-cn/more-npm-packages-on-cloudflare-workers-combining-polyfills-and-native-code/
     // "nodejs_compat_v2",
