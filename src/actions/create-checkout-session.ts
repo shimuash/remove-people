@@ -64,7 +64,7 @@ export const createCheckoutAction = actionClient
       if (!plan) {
         return {
           success: false,
-          error: 'Plan not found',
+          error: 'Price plan not found',
         };
       }
 
@@ -87,7 +87,7 @@ export const createCheckoutAction = actionClient
 
       // Create the checkout session with localized URLs
       const successUrl = getUrlWithLocale(
-        '/settings/billing?session_id={CHECKOUT_SESSION_ID}',
+        `${Routes.SettingsBilling}?session_id={CHECKOUT_SESSION_ID}`,
         locale
       );
       const cancelUrl = getUrlWithLocale(Routes.Pricing, locale);

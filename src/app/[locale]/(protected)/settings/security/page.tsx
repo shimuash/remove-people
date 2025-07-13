@@ -4,8 +4,12 @@ import { PasswordCardWrapper } from '@/components/settings/security/password-car
 export default function SecurityPage() {
   return (
     <div className="flex flex-col gap-8">
-      <PasswordCardWrapper />
-      <DeleteAccountCard />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <PasswordCardWrapper />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <DeleteAccountCard />
+      </div>
     </div>
   );
 }

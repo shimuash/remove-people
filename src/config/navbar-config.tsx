@@ -72,13 +72,13 @@ export function getNavbarLinks(): NestedMenuItem[] {
     {
       title: t('ai.title'),
       items: [
-        // {
-        //   title: t('ai.items.text.title'),
-        //   description: t('ai.items.text.description'),
-        //   icon: <SquarePenIcon className="size-4 shrink-0" />,
-        //   href: Routes.AIText,
-        //   external: false,
-        // },
+        {
+          title: t('ai.items.text.title'),
+          description: t('ai.items.text.description'),
+          icon: <SquarePenIcon className="size-4 shrink-0" />,
+          href: Routes.AIText,
+          external: false,
+        },
         {
           title: t('ai.items.image.title'),
           description: t('ai.items.image.description'),

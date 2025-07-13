@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { PricePlan } from '@/payment/types';
+import type { CreditPackage } from '@/credits/types';
 
 /**
  * website config, without translations
@@ -17,6 +18,7 @@ export type WebsiteConfig = {
   storage: StorageConfig;
   payment: PaymentConfig;
   price: PriceConfig;
+  credits: CreditsConfig;
 };
 
 /**
@@ -146,6 +148,20 @@ export interface PaymentConfig {
  */
 export interface PriceConfig {
   plans: Record<string, PricePlan>;  // Plans indexed by ID
+}
+
+/**
+ * Credits configuration
+ */
+export interface CreditsConfig {
+  enableCredits: boolean;            // Whether to enable credits
+  enableForFreePlan: boolean;        // Whether to enable purchase credits for free plan users
+  registerGiftCredits: {
+    enable: boolean;                 // Whether to enable register gift credits
+    credits: number;                 // The number of credits to give to the user
+    expireDays?: number;             // The number of days to expire the credits, undefined means no expire
+  };
+  packages: Record<string, CreditPackage>;  // Packages indexed by ID
 }
 
 /**

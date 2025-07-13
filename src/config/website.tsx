@@ -90,6 +90,11 @@ export const websiteConfig: WebsiteConfig = {
         prices: [],
         isFree: true,
         isLifetime: false,
+        credits: {
+          enable: true,
+          amount: 50,
+          expireDays: 30,
+        },
       },
       pro: {
         id: 'pro',
@@ -111,7 +116,12 @@ export const websiteConfig: WebsiteConfig = {
         ],
         isFree: false,
         isLifetime: false,
-        recommended: true,
+        popular: true,
+        credits: {
+          enable: true,
+          amount: 1000,
+          expireDays: 30,
+        },
       },
       lifetime: {
         id: 'lifetime',
@@ -126,6 +136,70 @@ export const websiteConfig: WebsiteConfig = {
         ],
         isFree: false,
         isLifetime: true,
+        credits: {
+          enable: true,
+          amount: 1000,
+          expireDays: 30,
+        },
+      },
+    },
+  },
+  credits: {
+    enableCredits: true,
+    enableForFreePlan: false,
+    registerGiftCredits: {
+      enable: true,
+      credits: 50,
+      expireDays: 30,
+    },
+    packages: {
+      basic: {
+        id: 'basic',
+        popular: false,
+        credits: 100,
+        expireDays: 30,
+        price: {
+          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_CREDITS_BASIC!,
+          amount: 990,
+          currency: 'USD',
+          allowPromotionCode: true,
+        },
+      },
+      standard: {
+        id: 'standard',
+        popular: true,
+        credits: 200,
+        expireDays: 30,
+        price: {
+          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_CREDITS_STANDARD!,
+          amount: 1490,
+          currency: 'USD',
+          allowPromotionCode: true,
+        },
+      },
+      premium: {
+        id: 'premium',
+        popular: false,
+        credits: 500,
+        expireDays: 30,
+        price: {
+          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_CREDITS_PREMIUM!,
+          amount: 3990,
+          currency: 'USD',
+          allowPromotionCode: true,
+        },
+      },
+      enterprise: {
+        id: 'enterprise',
+        popular: false,
+        credits: 1000,
+        expireDays: 30,
+        price: {
+          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_CREDITS_ENTERPRISE!,
+          amount: 6990,
+          currency: 'USD',
+          allowPromotionCode: true,
+        },
       },
     },
   },
