@@ -34,11 +34,12 @@ export const websiteConfig: WebsiteConfig = {
   },
   features: {
     enableDiscordWidget: false,
+    enableCrispChat: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
     enableUpgradeCard: true,
     enableAffonsoAffiliate: false,
     enablePromotekitAffiliate: false,
     enableDatafastRevenueTrack: false,
-    enableTurnstileCaptcha: true,
+    enableTurnstileCaptcha: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
   },
   routes: {
     defaultLoginRedirect: '/dashboard',
@@ -50,6 +51,7 @@ export const websiteConfig: WebsiteConfig = {
   auth: {
     enableGoogleLogin: true,
     enableGithubLogin: true,
+    enableCredentialLogin: true,
   },
   i18n: {
     defaultLocale: 'en',
@@ -145,7 +147,7 @@ export const websiteConfig: WebsiteConfig = {
     },
   },
   credits: {
-    enableCredits: true,
+    enableCredits: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
     enableForFreePlan: false,
     registerGiftCredits: {
       enable: true,

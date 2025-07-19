@@ -10,8 +10,8 @@ import LogoCloud from '@/components/blocks/logo-cloud/logo-cloud';
 import PricingSection from '@/components/blocks/pricing/pricing';
 import StatsSection from '@/components/blocks/stats/stats';
 import TestimonialsSection from '@/components/blocks/testimonials/testimonials';
+import CrispChat from '@/components/layout/crisp-chat';
 import { NewsletterCard } from '@/components/newsletter/newsletter-card';
-import DiscordWidget from '@/components/shared/discord-widget';
 import { constructMetadata } from '@/lib/metadata';
 import { getUrlWithLocale } from '@/lib/urls/urls';
 import type { Metadata } from 'next';
@@ -73,6 +73,8 @@ export default async function HomePage(props: HomePageProps) {
         <TestimonialsSection />
 
         <NewsletterCard />
+
+        <CrispChat />
       </div>
     </>
   );

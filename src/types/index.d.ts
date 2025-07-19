@@ -69,6 +69,7 @@ export interface SocialConfig {
  */
 export interface FeaturesConfig {
   enableDiscordWidget?: boolean;      // Whether to enable the discord widget, deprecated
+  enableCrispChat?: boolean;          // Whether to enable the crisp chat
   enableUpgradeCard?: boolean;        // Whether to enable the upgrade card in the sidebar
   enableAffonsoAffiliate?: boolean;   // Whether to enable affonso affiliate
   enablePromotekitAffiliate?: boolean;   // Whether to enable promotekit affiliate
@@ -94,6 +95,7 @@ export interface AnalyticsConfig {
 export interface AuthConfig {
   enableGoogleLogin?: boolean;       // Whether to enable google login
   enableGithubLogin?: boolean;       // Whether to enable github login
+  enableCredentialLogin?: boolean;   // Whether to enable email/password login
 }
 
 /**
