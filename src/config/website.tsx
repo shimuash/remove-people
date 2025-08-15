@@ -34,12 +34,12 @@ export const websiteConfig: WebsiteConfig = {
   },
   features: {
     enableDiscordWidget: false,
-    enableCrispChat: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
     enableUpgradeCard: true,
     enableUpdateAvatar: true,
     enableAffonsoAffiliate: false,
     enablePromotekitAffiliate: false,
     enableDatafastRevenueTrack: false,
+    enableCrispChat: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
     enableTurnstileCaptcha: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
   },
   routes: {
@@ -68,8 +68,12 @@ export const websiteConfig: WebsiteConfig = {
     },
   },
   blog: {
+    enable: true,
     paginationSize: 6,
     relatedPostsSize: 3,
+  },
+  docs: {
+    enable: true,
   },
   mail: {
     provider: 'resend',
@@ -77,10 +81,12 @@ export const websiteConfig: WebsiteConfig = {
     supportEmail: 'MkSaaS <support@mksaas.com>',
   },
   newsletter: {
+    enable: true,
     provider: 'resend',
     autoSubscribeAfterSignUp: true,
   },
   storage: {
+    enable: true,
     provider: 's3',
   },
   payment: {
