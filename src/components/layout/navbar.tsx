@@ -30,6 +30,7 @@ import LocaleSwitcher from './locale-switcher';
 
 interface NavBarProps {
   scroll?: boolean;
+  className?: string;
 }
 
 const customNavigationMenuTriggerStyle = cn(
@@ -41,7 +42,7 @@ const customNavigationMenuTriggerStyle = cn(
   'data-[state=open]:bg-transparent data-[state=open]:text-accent-foreground'
 );
 
-export function Navbar({ scroll }: NavBarProps) {
+export function Navbar({ scroll, className }: NavBarProps) {
   const t = useTranslations();
   const scrolled = useScroll(50);
   const menuLinks = useNavbarLinks();
@@ -56,14 +57,15 @@ export function Navbar({ scroll }: NavBarProps) {
   }, []);
 
   return (
-    <section
+    <header
       className={cn(
         'sticky inset-x-0 top-0 z-40 py-4 transition-all duration-300',
         scroll
           ? scrolled
             ? 'bg-muted/50 backdrop-blur-md border-b supports-backdrop-filter:bg-muted/50'
             : 'bg-transparent'
-          : 'border-b bg-muted/50'
+          : 'border-b bg-muted/50',
+          className
       )}
     >
       <Container className="px-4">
@@ -72,10 +74,10 @@ export function Navbar({ scroll }: NavBarProps) {
           {/* logo and name */}
           <div className="flex items-center">
             <LocaleLink href="/" className="flex items-center space-x-2">
-              <Logo />
-              <span className="text-xl font-semibold">
+              <Logo withText className='w-auto'/>
+              {/* <span className="text-xl font-semibold">
                 {t('Metadata.name')}
-              </span>
+              </span> */}
             </LocaleLink>
           </div>
 
@@ -260,6 +262,6 @@ export function Navbar({ scroll }: NavBarProps) {
         {/* mobile navbar */}
         <NavbarMobile className="lg:hidden" />
       </Container>
-    </section>
+    </header>
   );
 }

@@ -63,11 +63,11 @@ export const websiteConfig: WebsiteConfig = {
         name: 'English',
         hreflang: 'en',
       },
-      zh: {
-        flag: '🇨🇳',
-        name: '中文',
-        hreflang: 'zh-CN',
-      },
+      // zh: {
+      //   flag: '🇨🇳',
+      //   name: '中文',
+      //   hreflang: 'zh-CN',
+      // },
     },
   },
   blog: {
