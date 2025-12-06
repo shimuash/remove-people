@@ -65,7 +65,7 @@ export function Navbar({ scroll, className }: NavBarProps) {
             ? 'bg-muted/50 backdrop-blur-md border-b supports-backdrop-filter:bg-muted/50'
             : 'bg-transparent'
           : 'border-b bg-muted/50',
-          className
+        className
       )}
     >
       <Container className="px-4">
@@ -74,7 +74,7 @@ export function Navbar({ scroll, className }: NavBarProps) {
           {/* logo and name */}
           <div className="flex items-center">
             <LocaleLink href="/" className="flex items-center space-x-2">
-              <Logo withText className='w-auto'/>
+              <Logo variant="text" />
               {/* <span className="text-xl font-semibold">
                 {t('Metadata.name')}
               </span> */}
@@ -219,10 +219,7 @@ export function Navbar({ scroll, className }: NavBarProps) {
 
           {/* navbar right show sign in or user */}
           <div className="flex items-center gap-x-4">
-            {!mounted || isPending ? (
-              // <Skeleton className="size-8 border rounded-full" />
-              null
-            ) : currentUser ? (
+            {!mounted || isPending ? null : currentUser ? ( // <Skeleton className="size-8 border rounded-full" />
               <>
                 {/* <CreditsBalanceButton /> */}
                 <UserButton user={currentUser} />
@@ -232,8 +229,8 @@ export function Navbar({ scroll, className }: NavBarProps) {
                 <LoginWrapper mode="modal" asChild>
                   <Button
                     variant="outline"
-                    size="sm"
                     className="cursor-pointer rounded-full"
+                    size="sm"
                   >
                     {t('Common.login')}
                   </Button>
@@ -249,7 +246,7 @@ export function Navbar({ scroll, className }: NavBarProps) {
                     'rounded-full'
                   )}
                 >
-                  {t('Common.signUp')}
+                  Try for free
                 </LocaleLink>
               </div>
             )}

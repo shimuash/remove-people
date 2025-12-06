@@ -24,7 +24,7 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
             <div className="space-y-4">
               {/* logo and name */}
               <div className="items-center space-x-2 flex">
-                <Logo withText className='w-auto'/>
+                <Logo variant="text" />
               </div>
 
               {/* tagline */}

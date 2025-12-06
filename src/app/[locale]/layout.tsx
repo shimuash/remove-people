@@ -1,5 +1,5 @@
 import { Analytics } from '@/analytics/analytics';
-import { fontInter } from '@/assets/fonts';
+import { fontPlusJakartaSans, fontManrope } from '@/assets/fonts';
 import AffonsoScript from '@/components/affiliate/affonso';
 import PromotekitScript from '@/components/affiliate/promotekit';
 import { TailwindIndicator } from '@/components/layout/tailwind-indicator';
@@ -47,7 +47,8 @@ export default async function LocaleLayout({
         suppressHydrationWarning
         className={cn(
           'size-full antialiased',
-          fontInter.className,
+          fontPlusJakartaSans.variable,
+          fontManrope.className
         )}
       >
         <NuqsAdapter>

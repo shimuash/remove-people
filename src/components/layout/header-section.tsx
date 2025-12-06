@@ -53,7 +53,7 @@ export function HeaderSection({
       {subtitle ? (
         <SubtitleComponent
           className={cn(
-            'text-balance text-2xl text-foreground',
+            'text-balance text-2xl text-foreground font-title',
             subtitleClassName
           )}
         >

@@ -6,7 +6,12 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-export function Logo({ className, withText }: { className?: string, withText?: boolean }) {
+interface LogoProps {
+  className?: string;
+  variant?: 'text' | 'icon';
+}
+
+export function Logo({ className, variant = 'icon' }: LogoProps) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   // const logoLight = websiteConfig.metadata.images?.logoLight ?? '/logo.png';
@@ -16,7 +21,7 @@ export function Logo({ className, withText }: { className?: string, withText?: b
   // This prevents hydration mismatch
   // const logo = mounted && theme === 'dark' ? logoDark : logoLight;
 
-  const logo = withText ? '/text-logo.svg' : '/logo.svg'
+  const logo = variant === 'text' ? '/logo-text.svg' : '/logo-s.png';
 
   // Only show theme-dependent UI after hydration to prevent mismatch
   useEffect(() => {
@@ -30,7 +35,11 @@ export function Logo({ className, withText }: { className?: string, withText?: b
       title="Logo"
       width={96}
       height={96}
-      className={cn('size-8 rounded-md', className)}
+      className={cn(
+        'size-6 rounded-md',
+        variant === 'text' && 'h-5 w-auto',
+        className
+      )}
     />
   );
 }
