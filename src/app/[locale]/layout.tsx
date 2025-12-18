@@ -1,5 +1,5 @@
 import { Analytics } from '@/analytics/analytics';
-import { fontPlusJakartaSans, fontManrope } from '@/assets/fonts';
+import { fontManrope, fontPlusJakartaSans } from '@/assets/fonts';
 import AffonsoScript from '@/components/affiliate/affonso';
 import PromotekitScript from '@/components/affiliate/promotekit';
 import { TailwindIndicator } from '@/components/layout/tailwind-indicator';

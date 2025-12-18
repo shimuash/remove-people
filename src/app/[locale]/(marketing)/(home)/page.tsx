@@ -3,7 +3,7 @@ import FaqSection from '@/components/blocks/faqs/faqs';
 import FeaturesSection from '@/components/blocks/features/features';
 import Features2Section from '@/components/blocks/features/features2';
 import Features3Section from '@/components/blocks/features/features3';
-import HeroSection from '@/components/blocks/hero/hero';
+import HeroSection from '@/components/blocks/hero/hero1';
 import IntegrationSection from '@/components/blocks/integration/integration';
 import Integration2Section from '@/components/blocks/integration/integration2';
 import LogoCloud from '@/components/blocks/logo-cloud/logo-cloud';
@@ -50,6 +50,8 @@ export default async function HomePage(props: HomePageProps) {
       <div className="flex flex-col">
         <HeroSection />
 
+        {/* <LogoCloud />
+
         <LogoCloud />
 
         <StatsSection />
@@ -74,7 +76,7 @@ export default async function HomePage(props: HomePageProps) {
 
         <NewsletterCard />
 
-        <CrispChat />
+        <CrispChat /> */}
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Manrope } from 'next/font/google';
+import { Manrope, Plus_Jakarta_Sans } from 'next/font/google';
 
 /**
  * 1. Fonts Documentation

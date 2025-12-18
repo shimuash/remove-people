@@ -225,7 +225,7 @@ export function Navbar({ scroll, className }: NavBarProps) {
                 <UserButton user={currentUser} />
               </>
             ) : (
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-3">
                 <LoginWrapper mode="modal" asChild>
                   <Button
                     variant="outline"
