@@ -1,5 +1,7 @@
 # Image Editor 技术规格文档
 
+---
+
 ## 概述
 
 本文档描述了图片编辑器功能的技术规格，该编辑器允许用户上传图片后在全屏浮窗中进行涂抹标记，并调用 AI 接口移除标记区域的内容。
@@ -63,6 +65,44 @@
 | Debug 预览位置 | 缩放控件上方 | 仅在 Debug 模式开启时显示 |
 | Chat 输入框位置 | 工具栏上方 | 点击 Chat 工具时显示 |
 | 后端服务 | Mock 接口 | 预留真实接口接入点 |
+
+---
+
+## 约束与限制
+
+### 图片限制
+
+| 限制项 | 值 | 说明 |
+|--------|------|------|
+| 最大文件大小 | 10MB | 超出时提示用户压缩后重试 |
+| 最大分辨率 | 4096 × 4096px | 单边不超过 4096px |
+| 支持格式 | JPEG, PNG, WebP | 不支持 GIF、SVG、HEIC |
+| 最小分辨率 | 100 × 100px | 太小的图片无编辑意义 |
+
+**处理策略**：
+- 超出大小限制：拒绝上传，提示"图片大小不能超过 10MB"
+- 超出分辨率：自动缩放到 4096px 内，保持宽高比
+- 格式不支持：拒绝上传，提示支持的格式列表
+
+### 浏览器兼容性
+
+| 浏览器 | 最低版本 |
+|--------|----------|
+| Chrome | 最近 2 个主版本 |
+| Edge | 最近 2 个主版本 |
+| Safari | 最近 2 个主版本 |
+| Firefox | 最近 2 个主版本 |
+
+**不支持**：IE11、旧版移动浏览器
+
+### 性能指标
+
+| 指标 | 目标值 |
+|------|--------|
+| 编辑器打开时间 | < 500ms |
+| 涂抹响应延迟 | < 16ms (60fps) |
+| 融合图生成时间 | < 200ms |
+| 历史记录上限 | 15 张图片 |
 
 ---
 
@@ -274,6 +314,84 @@
 
 ---
 
+## Chat 与涂抹/移除的交互关系
+
+### 设计决策：Chat 和 Inpaint 是**互斥模式**
+
+| 模式 | 说明 |
+|------|------|
+| Inpaint 模式 | 使用 Brush 涂抹 → 点击移除 → 发送融合图 |
+| Chat 模式 | 输入 prompt → 发送 currentImage + prompt |
+
+**不支持组合**：不支持"涂抹 + prompt"的组合编辑（如"移除涂抹区域并把背景变成海滩"）。
+
+### Chat 激活时的状态处理
+
+| 状态项 | Chat 激活时的行为 |
+|--------|------------------|
+| 已有涂抹 (lines) | **保留显示**，但不参与 Chat 请求 |
+| 移除按钮 | **保持可用**（如果 hasMask=true） |
+| Brush/Eraser | 可切换回去继续涂抹 |
+
+### 状态转换矩阵
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        activeTool                               │
+│         ┌─────────┬─────────┬─────────┐                        │
+│         │  brush  │ eraser  │  chat   │                        │
+├─────────┼─────────┼─────────┼─────────┤                        │
+│ 可涂抹   │   ✅    │   ✅    │   ❌    │                        │
+│ 显示滑块 │   ✅    │   ✅    │   ❌    │                        │
+│ 显示输入框│   ❌    │   ❌    │   ✅    │                        │
+│ 移除可用 │ hasMask │ hasMask │ hasMask │ ← 始终取决于 hasMask   │
+└─────────┴─────────┴─────────┴─────────┘
+```
+
+### Chat 发送后的处理
+
+```typescript
+async function handleChatSubmit(prompt: string) {
+  setProcessing(true)
+
+  try {
+    // Chat 只发送 currentImage，不包含涂抹
+    const result = await chatEditAPI({
+      image: currentImage,  // 不是融合图
+      prompt
+    })
+
+    // 成功后：
+    pushImageHistory(result.image)  // 自动清空 lines
+    setActiveTool('brush')          // 可选：切回 Brush 工具
+
+  } catch (error) {
+    // 失败：保留 lines 和输入框
+    showToast(error.message)
+  } finally {
+    setProcessing(false)
+  }
+}
+```
+
+### 用户场景示例
+
+| 场景 | 用户操作 | 系统行为 |
+|------|----------|----------|
+| 先涂抹后 Chat | 画了涂抹 → 切到 Chat → 输入 prompt → 发送 | Chat 只发送 currentImage（无涂抹），成功后 lines 清空 |
+| 先 Chat 后涂抹 | Chat 成功 → 切到 Brush → 涂抹 → 移除 | 正常 Inpaint 流程 |
+| Chat 激活时点移除 | 有涂抹 → 切到 Chat → 点移除按钮 | 执行移除（发送融合图），Chat 输入框关闭 |
+
+### 为什么不支持组合模式
+
+| 考量 | 说明 |
+|------|------|
+| 用户心智模型 | "涂抹移除"和"文字编辑"是两种不同的编辑意图 |
+| 后端接口 | 需要不同的 API（inpaint vs chat），组合需要新接口 |
+| MVP 复杂度 | 组合模式增加交互复杂度，后续迭代可考虑 |
+
+---
+
 ## 工具栏设计
 
 ### 头部工具栏布局
@@ -395,6 +513,76 @@
 
 ---
 
+## 下载功能
+
+### 下载内容
+
+下载的是 **currentImage**（当前编辑结果），**不包含涂抹遮罩**。
+
+| 项目 | 说明 |
+|------|------|
+| 图片内容 | `imageHistory[historyIndex]`，即当前显示的底图 |
+| 涂抹遮罩 | ❌ 不包含（红色涂抹区域不会出现在下载图片中） |
+
+### 导出格式
+
+| 场景 | 格式 | 说明 |
+|------|------|------|
+| 原图为 JPEG | JPEG (quality: 0.92) | 保持原格式，避免体积膨胀 |
+| 原图为 PNG | PNG | 保持透明度支持 |
+| 原图为 WebP | WebP (quality: 0.92) | 保持原格式 |
+| 无法判断 | PNG | 默认使用无损格式 |
+
+**格式检测**：通过原图 base64 的 MIME type 或文件扩展名判断。
+
+### 导出尺寸
+
+| 场景 | 尺寸 |
+|------|------|
+| 默认 | 原始尺寸（`naturalWidth × naturalHeight`） |
+| 上传时被压缩 | 压缩后的尺寸（即 currentImage 的实际尺寸） |
+
+**注意**：如果上传时图片超过 4096px 被自动压缩，下载的也是压缩后的尺寸。
+
+### 文件命名
+
+```
+edited_{timestamp}.{ext}
+```
+
+| 组成部分 | 说明 | 示例 |
+|----------|------|------|
+| 前缀 | 固定为 `edited_` | - |
+| timestamp | 13 位时间戳 | `1703234567890` |
+| ext | 根据格式决定 | `.jpg` / `.png` / `.webp` |
+
+**完整示例**：`edited_1703234567890.jpg`
+
+### 下载实现
+
+```typescript
+function downloadCurrentImage() {
+  const link = document.createElement('a')
+  const format = detectImageFormat(originalImage)  // 检测原图格式
+  const ext = format === 'jpeg' ? 'jpg' : format
+  const filename = `edited_${Date.now()}.${ext}`
+
+  link.download = filename
+  link.href = currentImage  // base64 或 blob URL
+  link.click()
+}
+```
+
+### 下载按钮状态
+
+| 状态 | 是否可用 |
+|------|----------|
+| 正常编辑 | ✅ 可用 |
+| isProcessing | ✅ 可用（可下载当前图） |
+| 对比模式 | ✅ 可用（下载 currentImage） |
+
+---
+
 ## 对比功能
 
 ### 交互方式
@@ -499,6 +687,106 @@
 
 ---
 
+## 融合图合成算法
+
+融合图是发送给后端的图片，包含原图和涂抹遮罩。**必须正确处理 isEraser 语义**。
+
+### 合成流程
+
+```
+currentImage (底图)
+        ↓
+创建临时 maskCanvas (透明背景)
+        ↓
+按顺序重放所有 lines:
+  - isEraser=false → 正常绘制 (#FF007A, 50% 透明度)
+  - isEraser=true  → 使用 destination-out 擦除
+        ↓
+将 maskCanvas 叠加到底图上
+        ↓
+导出为 base64 融合图
+```
+
+### 关键：必须使用独立的 maskCanvas
+
+```typescript
+function generateCompositeImage(
+  currentImage: HTMLImageElement,
+  lines: Line[]
+): string {
+  const width = currentImage.naturalWidth
+  const height = currentImage.naturalHeight
+
+  // 1. 创建遮罩层 canvas（透明背景）
+  const maskCanvas = document.createElement('canvas')
+  maskCanvas.width = width
+  maskCanvas.height = height
+  const maskCtx = maskCanvas.getContext('2d')!
+
+  // 2. 按顺序重放所有 lines（关键：保持绘制顺序）
+  for (const line of lines) {
+    maskCtx.beginPath()
+    maskCtx.lineCap = 'round'
+    maskCtx.lineJoin = 'round'
+    maskCtx.lineWidth = line.strokeWidth
+
+    if (line.isEraser) {
+      // 橡皮擦：使用 destination-out 擦除已绘制的内容
+      maskCtx.globalCompositeOperation = 'destination-out'
+      maskCtx.strokeStyle = 'rgba(0,0,0,1)'  // 颜色不重要，只要不透明
+    } else {
+      // 画笔：正常绘制
+      maskCtx.globalCompositeOperation = 'source-over'
+      maskCtx.strokeStyle = 'rgba(255, 0, 122, 0.5)'  // #FF007A, 50%
+    }
+
+    // 绘制路径
+    const points = line.points
+    if (points.length >= 2) {
+      maskCtx.moveTo(points[0], points[1])
+      for (let i = 2; i < points.length; i += 2) {
+        maskCtx.lineTo(points[i], points[i + 1])
+      }
+      maskCtx.stroke()
+    }
+  }
+
+  // 3. 创建最终 canvas，合成底图 + 遮罩
+  const finalCanvas = document.createElement('canvas')
+  finalCanvas.width = width
+  finalCanvas.height = height
+  const finalCtx = finalCanvas.getContext('2d')!
+
+  finalCtx.drawImage(currentImage, 0, 0)
+  finalCtx.drawImage(maskCanvas, 0, 0)  // 叠加遮罩层
+
+  return finalCanvas.toDataURL('image/png')
+}
+```
+
+### 为什么需要独立的 maskCanvas
+
+| 方案 | 问题 |
+|------|------|
+| 直接在底图上绘制 | `destination-out` 会擦除底图本身 |
+| 不处理 isEraser | 被擦除的区域在融合图中仍有遮罩 |
+
+**正确方案**：先在独立的透明 canvas 上重放所有 lines（含擦除），再叠加到底图。
+
+### Debug 预览与融合图的一致性
+
+Debug 预览必须使用**相同的合成算法**，确保"所见即所得"：
+
+```typescript
+// DebugPreview 组件
+function updatePreview() {
+  const compositeImage = generateCompositeImage(currentImage, lines)
+  setPreviewSrc(compositeImage)
+}
+```
+
+---
+
 ## 画布设计 (react-konva)
 
 ### 图层结构
@@ -522,6 +810,87 @@ Stage (可缩放)
 - 使用 Konva 的 `stage.scale()` 配合鼠标滚轮/双指缩放
 - 移动端：双指捏合缩放
 - 保持图片居中，限制最小/最大缩放比例 (0.1x - 5x)
+
+### 坐标系与坐标映射
+
+**核心原则**：`Line.points` 始终使用**原图坐标系**（Image Coordinates），与缩放/平移无关。
+
+#### 坐标系定义
+
+| 坐标系 | 说明 | 范围 |
+|--------|------|------|
+| 屏幕坐标 (Screen) | 鼠标/触摸事件的原始坐标 | 相对于 viewport |
+| 画布坐标 (Stage) | Konva Stage 内的坐标 | 受 stage position 影响 |
+| 原图坐标 (Image) | 相对于原始图片左上角的坐标 | (0,0) 到 (imageWidth, imageHeight) |
+
+#### 涂抹时的坐标转换
+
+```
+用户触摸/点击 (屏幕坐标)
+        ↓
+Stage.getPointerPosition() → 画布坐标
+        ↓
+减去图片偏移，除以缩放比例 → 原图坐标
+        ↓
+存入 Line.points[]
+```
+
+**转换公式**：
+
+```typescript
+// 屏幕坐标 → 原图坐标
+function screenToImageCoords(screenX: number, screenY: number): { x: number, y: number } {
+  const stagePos = stage.getPointerPosition()  // 画布坐标
+  const scale = stage.scaleX()                 // 当前缩放比例
+  const imageOffset = { x: image.x(), y: image.y() }  // 图片在画布中的偏移
+
+  return {
+    x: (stagePos.x - imageOffset.x) / scale,
+    y: (stagePos.y - imageOffset.y) / scale
+  }
+}
+```
+
+#### 渲染时的坐标转换
+
+DrawingLayer 渲染 Line 时，需要应用与 ImageLayer 相同的 transform：
+
+```typescript
+// DrawingLayer 与 ImageLayer 共享同一个 transform
+<Layer>
+  <Group x={imageOffset.x} y={imageOffset.y} scaleX={scale} scaleY={scale}>
+    {lines.map(line => (
+      <Line points={line.points} ... />  // points 是原图坐标，Group 会自动应用 transform
+    ))}
+  </Group>
+</Layer>
+```
+
+#### 融合图生成时的坐标处理
+
+生成融合图时，直接使用原图坐标绘制到临时 canvas：
+
+```typescript
+function generateCompositeImage(currentImage: HTMLImageElement, lines: Line[]): string {
+  // 1. 创建与原图相同尺寸的 canvas
+  const canvas = document.createElement('canvas')
+  canvas.width = currentImage.naturalWidth
+  canvas.height = currentImage.naturalHeight
+  const ctx = canvas.getContext('2d')!
+
+  // 2. 绘制底图
+  ctx.drawImage(currentImage, 0, 0)
+
+  // 3. 绘制涂抹层（原图坐标，无需转换）
+  // 详见下方"融合图合成算法"
+
+  return canvas.toDataURL('image/png')
+}
+```
+
+**关键点**：由于 `Line.points` 始终是原图坐标，融合图合成时无需任何坐标转换，直接绘制即可。
+
+---
 
 ### 画笔参数
 
@@ -858,6 +1227,46 @@ function pushImageHistory(newImage: string) {
 
 ---
 
+## 错误处理
+
+### 错误类型与提示
+
+| 错误场景 | 错误码 | 用户提示 (中文) | 用户提示 (英文) |
+|----------|--------|-----------------|-----------------|
+| 图片过大 | FILE_TOO_LARGE | 图片大小不能超过 10MB | Image size cannot exceed 10MB |
+| 分辨率过高 | RESOLUTION_TOO_HIGH | 图片分辨率过高，已自动压缩 | Image resolution too high, auto-compressed |
+| 格式不支持 | UNSUPPORTED_FORMAT | 仅支持 JPEG、PNG、WebP 格式 | Only JPEG, PNG, WebP formats are supported |
+| 网络错误 | NETWORK_ERROR | 网络连接失败，请检查网络后重试 | Network error, please check your connection |
+| 服务器错误 | SERVER_ERROR | 服务器繁忙，请稍后重试 | Server is busy, please try again later |
+| 处理超时 | TIMEOUT | 处理超时，请重试 | Processing timeout, please retry |
+| 处理失败 | PROCESSING_FAILED | 图片处理失败，请重试 | Image processing failed, please retry |
+
+### 错误展示方式
+
+| 错误类型 | 展示方式 | 说明 |
+|----------|----------|------|
+| 上传错误 | Toast 提示 | 3 秒后自动消失 |
+| 处理错误 | Toast 提示 + 保留涂抹 | 用户可直接重试 |
+| 网络错误 | Toast 提示 + 重试按钮 | 移除按钮显示"重试" |
+
+### 重试机制
+
+```typescript
+interface RetryConfig {
+  maxRetries: 2           // 最大重试次数
+  retryDelay: 1000        // 重试间隔 (ms)
+  timeout: 30000          // 单次请求超时 (ms)
+}
+```
+
+**重试策略**：
+- 网络错误：自动重试，最多 2 次
+- 服务器 5xx 错误：自动重试
+- 客户端 4xx 错误：不重试，直接提示用户
+- 超时：不自动重试，提示用户手动重试
+
+---
+
 ## 依赖
 
 ### 新增依赖
@@ -868,11 +1277,14 @@ pnpm add react-konva konva
 
 ### 现有可复用依赖
 
-- `@radix-ui/react-dialog` - 弹窗基础
-- `@radix-ui/react-slider` - 滑块控件
-- `lucide-react` - 图标
-- `react-dropzone` - 文件上传（已有）
-- `zustand` - 状态管理（可选）
+| 包名 | 用途 |
+|------|------|
+| `@radix-ui/react-dialog` | 全屏弹窗基础 |
+| `@radix-ui/react-slider` | 画笔大小滑块 |
+| `lucide-react` | 工具栏图标 |
+| `react-dropzone` | 图片上传（已有） |
+| `zustand` | 编辑器状态管理 |
+| `sonner` | Toast 错误提示 |
 
 ---
 
@@ -898,8 +1310,10 @@ pnpm add react-konva konva
     "brushSize": "Brush Size",
     "remove": "Remove",
     "removing": "Removing...",
+    "retry": "Retry",
     "close": "Close",
     "chatPlaceholder": "Describe the changes you want...",
+    "chatSend": "Send",
     "zoom": {
       "zoomIn": "Zoom In",
       "zoomOut": "Zoom Out",
@@ -908,6 +1322,15 @@ pnpm add react-konva konva
     "compare": {
       "original": "Original",
       "current": "Current"
+    },
+    "errors": {
+      "fileTooLarge": "Image size cannot exceed 10MB",
+      "resolutionTooHigh": "Image resolution too high, auto-compressed",
+      "unsupportedFormat": "Only JPEG, PNG, WebP formats are supported",
+      "networkError": "Network error, please check your connection",
+      "serverError": "Server is busy, please try again later",
+      "timeout": "Processing timeout, please retry",
+      "processingFailed": "Image processing failed, please retry"
     }
   }
 }
@@ -964,3 +1387,61 @@ pnpm add react-konva konva
     - 使用 Throttle (非 Debounce) 控制更新频率
     - Desktop: 100ms，Mobile: 200ms
     - 避免每次 mousemove/touchmove 都生成 base64
+
+---
+
+## 验收标准
+
+### 功能验收
+
+#### 基础功能
+- [ ] 上传图片后打开全屏编辑器
+- [ ] Brush 工具可正常涂抹，颜色为 #FF007A，透明度 50%
+- [ ] Eraser 工具可擦除涂抹区域
+- [ ] 画笔大小滑块可调整 Brush/Eraser 大小 (5-100px)
+- [ ] 点击移除按钮后发送融合图到后端
+- [ ] 移除成功后结果图覆盖当前图片
+- [ ] 点击下载按钮可下载当前图片
+
+#### 历史功能
+- [ ] Undo 可回退到上一个图片版本
+- [ ] Redo 可恢复到下一个图片版本
+- [ ] Undo/Redo 切换时清空当前涂抹
+- [ ] 历史记录不超过 15 张
+
+#### Chat 功能
+- [ ] 点击 Chat 工具显示输入框
+- [ ] 输入 prompt 后发送可编辑图片
+- [ ] Chat 成功后结果图覆盖当前图片
+
+#### 对比功能
+- [ ] 点击对比按钮进入分屏对比模式
+- [ ] 可拖动滑块调整分屏位置
+- [ ] 对比模式下隐藏涂抹层和工具栏
+- [ ] 再次点击对比按钮退出
+
+#### 缩放功能
+- [ ] 点击 + 放大 10%
+- [ ] 点击 - 缩小 10%
+- [ ] 点击比例数字在 Fit 和 1:1 之间切换
+- [ ] 鼠标滚轮可缩放
+- [ ] 移动端双指可缩放
+
+#### Debug 功能
+- [ ] 开启 Debug 模式显示融合图预览
+- [ ] 预览随涂抹实时更新（throttle）
+
+### 响应式验收
+- [ ] Desktop (≥768px) 布局正确
+- [ ] Mobile (<768px) 布局正确
+- [ ] 移动端触摸手势正常（单指绘制、双指缩放）
+
+### 性能验收
+- [ ] 编辑器打开时间 < 500ms
+- [ ] 涂抹流畅无卡顿 (60fps)
+- [ ] 大图 (4096px) 可正常编辑
+
+### 错误处理验收
+- [ ] 超大图片显示错误提示
+- [ ] 网络错误显示提示并保留涂抹
+- [ ] 处理超时显示提示
