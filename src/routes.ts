@@ -40,13 +40,6 @@ export enum Routes {
   // payment processing
   Payment = '/payment',
 
-  // AI routes
-  AIText = '/ai/text',
-  AIImage = '/ai/image',
-  AIChat = '/ai/chat',
-  AIVideo = '/ai/video',
-  AIAudio = '/ai/audio',
-
   // block routes
   MagicuiBlocks = '/magicui',
   HeroBlocks = '/blocks/hero-section',
