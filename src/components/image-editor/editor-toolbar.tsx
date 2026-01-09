@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { useMeasure } from 'react-use';
 import ChatPanel from './chat-panel';
 import { useEditorStoreSelector } from './hooks/use-editor-state';
 import { RemoveButton } from './remove-button';
@@ -75,6 +76,7 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
 
   // Popover state for brush size panel
   const [brushPopoverOpen, setBrushPopoverOpen] = useState(false);
+  const [toolbarRef, { width: toolbarWidth }] = useMeasure<HTMLDivElement>();
 
   // Handle popover close: reset eraser mode
   const handlePopoverOpenChange = (open: boolean) => {
@@ -101,11 +103,17 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
   const canClear = hasMask() && !isProcessing;
 
   return (
-    <div className={cn('flex flex-col items-center gap-2', className)}>
+    <div
+      className={cn(
+        'flex flex-col items-center justify-center gap-2 w-fit',
+        className
+      )}
+    >
       {/* Chat input above toolbar when chat tool is active */}
-      <ChatPanel />
+      {/* Add 20px to compensate for Toolbar's px-2.5 padding (useMeasure returns content-box width) */}
+      <ChatPanel maxWidth={toolbarWidth + 20} />
 
-      <Toolbar size="sm">
+      <Toolbar ref={toolbarRef} size="sm" className="h-12 rounded-xl px-3">
         <ToolbarToggleGroup
           type="single"
           value={isEraserMode && activeTool === 'brush' ? '' : activeTool}
@@ -240,10 +248,14 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <ToolbarSeparator />
-        <ToolbarButton asChild>
-          <RemoveButton />
-        </ToolbarButton>
+        {activeTool === 'brush' && (
+          <>
+            <ToolbarSeparator />
+            <ToolbarButton asChild>
+              <RemoveButton />
+            </ToolbarButton>
+          </>
+        )}
       </Toolbar>
     </div>
   );

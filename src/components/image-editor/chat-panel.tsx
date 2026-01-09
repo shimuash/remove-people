@@ -4,10 +4,11 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
+  InputGroupInput,
   InputGroupTextarea,
 } from '@/components/ui/input-group';
 import { cn } from '@/lib/utils';
-import { Loader2, Send } from 'lucide-react';
+import { ArrowRight, Loader2, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useCallback, useState } from 'react';
 import { toast } from 'sonner';
@@ -15,9 +16,10 @@ import { useEditorStore } from './hooks/use-editor-state';
 
 interface ChatPanelProps {
   className?: string;
+  maxWidth?: number;
 }
 
-export default function ChatPanel({ className }: ChatPanelProps) {
+export default function ChatPanel({ className, maxWidth }: ChatPanelProps) {
   const t = useTranslations('ImageEditor');
   const [prompt, setPrompt] = useState('');
 
@@ -89,9 +91,10 @@ export default function ChatPanel({ className }: ChatPanelProps) {
   return (
     <InputGroup
       className={cn(
-        'w-full bg-background rounded-xl focus-visible:outline-none',
+        'w-full bg-background focus-visible:outline-none rounded-3xl px-3 py-1',
         className
       )}
+      style={maxWidth ? { maxWidth } : undefined}
     >
       <InputGroupTextarea
         value={prompt}
@@ -99,21 +102,19 @@ export default function ChatPanel({ className }: ChatPanelProps) {
         onKeyDown={handleKeyDown}
         placeholder={t('chatPlaceholder')}
         disabled={isProcessing}
+        rows={1}
+        className="text-base min-h-auto h-auto"
       />
-      <InputGroupAddon align="block-end">
+      <InputGroupAddon align="inline-end">
         <InputGroupButton
-          size="sm"
+          size="icon-sm"
           variant="default"
           onClick={handleSubmit}
           disabled={!prompt.trim() || isProcessing}
-          className="ml-auto"
+          className="ml-auto rounded-full"
         >
-          {isProcessing ? (
-            <Loader2 className="size-4 animate-spin" />
-          ) : (
-            <Send className="size-4" />
-          )}
-          Generate
+          {isProcessing ? <Loader2 className="animate-spin" /> : <ArrowRight />}
+          <span className="sr-only">Generate</span>
         </InputGroupButton>
       </InputGroupAddon>
     </InputGroup>
