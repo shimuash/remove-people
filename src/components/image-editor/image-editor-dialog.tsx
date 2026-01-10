@@ -93,7 +93,7 @@ export default function ImageEditorDialog() {
 
         {/* Bottom controls - only when not in compare mode */}
         {!isCompareMode && (
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center">
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center">
             <EditorToolbar />
           </div>
         )}

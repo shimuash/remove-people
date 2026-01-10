@@ -84,7 +84,7 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center gap-2 w-fit',
+        'flex flex-col items-center justify-center gap-2.5 w-fit',
         className
       )}
     >
@@ -193,7 +193,7 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
       {/* Add 20px to compensate for Toolbar's px-2.5 padding (useMeasure returns content-box width) */}
       <ChatPanel maxWidth={toolbarWidth + 24} />
 
-      <Toolbar ref={toolbarRef} size="sm" className="h-12 rounded-xl px-3">
+      <Toolbar ref={toolbarRef} size="sm" className="rounded-xl px-3 py-1.5">
         <ToolbarToggleGroup
           type="single"
           value={activeTool}

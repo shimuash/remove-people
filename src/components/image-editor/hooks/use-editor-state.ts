@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { useShallow } from 'zustand/shallow';
+import { hasVisibleMask } from '../lib/image-compositor';
 import {
   DEFAULT_BRUSH_SIZE,
   type EditorStore,
@@ -65,6 +66,7 @@ const initialState = {
   isProcessing: false,
   isPointerOnImage: false,
   isBrushSizeAdjusting: false,
+  maskCanvas: null as HTMLCanvasElement | null,
 };
 
 export const useEditorStore = create<EditorStore>((set, get) => ({
@@ -300,10 +302,15 @@ export const useEditorStore = create<EditorStore>((set, get) => ({
     set({ isBrushSizeAdjusting: adjusting });
   },
 
+  setMaskCanvas: (canvas: HTMLCanvasElement | null) => {
+    set({ maskCanvas: canvas });
+  },
+
   // Computed getters
   hasMask: () => {
     const state = get();
-    return state.lines.some((line) => !line.isEraser);
+    // Use canvas pixel detection for accurate mask presence check
+    return hasVisibleMask(state.maskCanvas);
   },
 
   canUndo: () => {

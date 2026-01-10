@@ -16,6 +16,7 @@ import {
   ToolbarToggleItem,
 } from '@/components/ui/toolbar';
 import {
+  ArrowLeft,
   ChevronDown,
   Download,
   Redo2,
@@ -122,16 +123,16 @@ const EditorHeader = forwardRef<HTMLElement>(function EditorHeader(_, ref) {
   return (
     <header
       ref={ref}
-      className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3"
+      className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 sm:py-4"
     >
       {/* Left: Close button */}
       <Button
         variant="outline"
         size="icon-lg"
-        className="size-11 rounded-xl focus-visible:outline-none"
+        className="focus-visible:outline-none rounded-lg cursor-pointer"
         onClick={closeEditor}
       >
-        <X className="size-5" />
+        <ArrowLeft className="size-5" />
       </Button>
 
       <Toolbar size="sm">

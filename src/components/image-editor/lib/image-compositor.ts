@@ -50,6 +50,39 @@ export function updateMaskCanvas(
   ctx.globalAlpha = 1;
 }
 
+/**
+ * Check if a mask canvas has any visible (non-transparent) pixels
+ * Uses sampling for performance - checks every Nth pixel
+ */
+export function hasVisibleMask(
+  canvas: HTMLCanvasElement | null,
+  sampleStep = 10
+): boolean {
+  if (!canvas) return false;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return false;
+
+  const { width, height } = canvas;
+  if (width === 0 || height === 0) return false;
+
+  const imageData = ctx.getImageData(0, 0, width, height);
+  const data = imageData.data;
+
+  // Check alpha channel (every 4th value starting from index 3)
+  // Sample every sampleStep pixels for performance
+  for (let y = 0; y < height; y += sampleStep) {
+    for (let x = 0; x < width; x += sampleStep) {
+      const alphaIndex = (y * width + x) * 4 + 3;
+      if (data[alphaIndex] > 0) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 // Track last drawn state for incremental updates
 let lastDrawnLineIndex = 0;
 let lastDrawnPointCount = 0;

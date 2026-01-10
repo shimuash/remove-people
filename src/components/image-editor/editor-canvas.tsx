@@ -26,9 +26,9 @@ export default function EditorCanvas({
 }: EditorCanvasProps) {
   const stageRef = useRef<Konva.Stage>(null);
   const maskImageRef = useRef<Konva.Image>(null);
+  const maskCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [image, setImage] = useState<HTMLImageElement | null>(null);
   const [stageSize, setStageSize] = useState({ width: 0, height: 0 });
-  const [maskCanvas, setMaskCanvas] = useState<HTMLCanvasElement | null>(null);
   // Cursor position for brush indicator (in image coordinates)
   const [cursorPosition, setCursorPosition] = useState<{
     x: number;
@@ -55,6 +55,7 @@ export default function EditorCanvas({
     brushSize,
     isEraserMode,
     isBrushSizeAdjusting,
+    setMaskCanvas,
   } = useEditorStore();
 
   const safeInsets = viewportInsets ?? DEFAULT_VIEWPORT_INSETS;
@@ -171,15 +172,16 @@ export default function EditorCanvas({
   useEffect(() => {
     if (!imageSize) return;
 
-    let canvas = maskCanvas;
+    let canvas = maskCanvasRef.current;
     if (!canvas) {
       canvas = document.createElement('canvas');
-      setMaskCanvas(canvas);
+      maskCanvasRef.current = canvas;
+      setMaskCanvas(canvas); // Sync to store for hasMask detection
     }
 
     updateMaskCanvasIncremental(canvas, lines, imageSize);
     maskImageRef.current?.getLayer()?.batchDraw();
-  }, [imageSize, lines, maskCanvas]);
+  }, [imageSize, lines, setMaskCanvas]);
 
   // Reset mask canvas state when lines are cleared
   useEffect(() => {
@@ -343,10 +345,10 @@ export default function EditorCanvas({
               clipWidth={imageSize?.width || 0}
               clipHeight={imageSize?.height || 0}
             >
-              {maskCanvas && !isBrushSizeAdjusting && (
+              {maskCanvasRef.current && !isBrushSizeAdjusting && (
                 <Image
                   ref={maskImageRef}
-                  image={maskCanvas}
+                  image={maskCanvasRef.current}
                   width={imageSize?.width || 0}
                   height={imageSize?.height || 0}
                   opacity={BRUSH_OPACITY}

@@ -76,6 +76,9 @@ export interface EditorState {
   isProcessing: boolean;
   isPointerOnImage: boolean; // True when mouse/touch is over the image
   isBrushSizeAdjusting: boolean; // True when user is adjusting brush size (show center preview)
+
+  // Mask canvas reference for pixel detection
+  maskCanvas: HTMLCanvasElement | null;
 }
 
 // Editor actions interface
@@ -125,6 +128,7 @@ export interface EditorActions {
   setProcessing: (processing: boolean) => void;
   setPointerOnImage: (onImage: boolean) => void;
   setBrushSizeAdjusting: (adjusting: boolean) => void;
+  setMaskCanvas: (canvas: HTMLCanvasElement | null) => void;
 }
 
 // Combined store type
