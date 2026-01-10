@@ -81,8 +81,6 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
     return null;
   }
 
-  const canClear = hasMask() && !isProcessing;
-
   return (
     <div
       className={cn(
@@ -97,10 +95,11 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  variant="outline"
+                  variant={!isEraserMode ? 'default' : 'outline'}
                   size="icon-sm"
                   className="cursor-pointer"
                   disabled={isProcessing}
+                  onClick={() => setEraserMode(false)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -109,9 +108,9 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M3 21v-4a4 4 0 1 1 4 4h-4" />
@@ -126,10 +125,11 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  variant="outline"
+                  variant={isEraserMode ? 'default' : 'outline'}
                   size="icon-sm"
                   className="cursor-pointer"
                   disabled={isProcessing}
+                  onClick={() => setEraserMode(true)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,9 +138,9 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M3 17a4 4 0 1 1 4 4h-4v-4" />
@@ -159,6 +159,7 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
                   size="icon-sm"
                   className="cursor-pointer"
                   onClick={clearLines}
+                  disabled={isProcessing}
                 >
                   <BrushCleaning />
                 </Button>
@@ -195,7 +196,7 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
       <Toolbar ref={toolbarRef} size="sm" className="h-12 rounded-xl px-3">
         <ToolbarToggleGroup
           type="single"
-          value={isEraserMode && activeTool === 'brush' ? '' : activeTool}
+          value={activeTool}
           onValueChange={handleToolChange}
         >
           <ToolbarToggleItem
