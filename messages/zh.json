@@ -1125,7 +1125,8 @@
     "zoom": {
       "zoomIn": "放大",
       "zoomOut": "缩小",
-      "resetZoom": "适应窗口"
+      "zoomToFit": "适应窗口",
+      "zoomTo100": "缩放至 100%"
     },
     "compare": {
       "original": "原图",

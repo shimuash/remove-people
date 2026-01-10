@@ -85,7 +85,7 @@ export default function EditorToolbar({ className }: EditorToolbarProps) {
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center gap-2.5 w-fit',
+        'flex flex-col items-center justify-center gap-2.5 w-fit pointer-events-auto',
         className
       )}
     >

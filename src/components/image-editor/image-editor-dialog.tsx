@@ -14,6 +14,7 @@ import DebugPreview from './debug-preview';
 import EditorHeader from './editor-header';
 import EditorToolbar from './editor-toolbar';
 import { useEditorStoreSelector } from './hooks/use-editor-state';
+import ZoomControl from './zoom-control';
 // Dynamic import for EditorCanvas (SSR compatibility)
 const EditorCanvas = dynamic(() => import('./editor-canvas'), {
   ssr: false,
@@ -26,9 +27,9 @@ const EditorCanvas = dynamic(() => import('./editor-canvas'), {
   ),
 });
 
-// Fixed height for header and toolbar
-const HEADER_HEIGHT = 72;
-const TOOLBAR_HEIGHT = 72;
+// Fixed height for header and toolbar (including padding/margin)
+const HEADER_HEIGHT = 76;
+const TOOLBAR_HEIGHT = 132;
 
 export default function ImageEditorDialog() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,7 +84,14 @@ export default function ImageEditorDialog() {
           {/* Compare overlay */}
           {isCompareMode && <CompareView viewportInsets={viewportInsets} />}
 
-          {/* Right side controls (zoom, debug) */}
+          {/* Left side controls (zoom) */}
+          {!isCompareMode && (
+            <div className="absolute bottom-6 left-4 z-10">
+              <ZoomControl />
+            </div>
+          )}
+
+          {/* Right side controls (debug) */}
           {!isCompareMode && (
             <div className="absolute bottom-4 right-4 flex flex-col gap-2 items-end">
               <DebugPreview />
@@ -93,7 +101,7 @@ export default function ImageEditorDialog() {
 
         {/* Bottom controls - only when not in compare mode */}
         {!isCompareMode && (
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center">
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center pointer-events-none">
             <EditorToolbar />
           </div>
         )}
