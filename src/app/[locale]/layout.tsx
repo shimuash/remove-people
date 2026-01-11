@@ -3,6 +3,7 @@ import { fontManrope, fontPlusJakartaSans } from '@/assets/fonts';
 import AffonsoScript from '@/components/affiliate/affonso';
 import PromotekitScript from '@/components/affiliate/promotekit';
 import { TailwindIndicator } from '@/components/layout/tailwind-indicator';
+import { AuthModalProvider } from '@/components/providers/auth-modal-provider';
 import { routing } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import { type Locale, NextIntlClientProvider, hasLocale } from 'next-intl';
@@ -56,6 +57,7 @@ export default async function LocaleLayout({
             <Providers locale={locale}>
               {children}
 
+              <AuthModalProvider />
               <Toaster richColors position="top-right" offset={64} />
               <TailwindIndicator />
               <Analytics />

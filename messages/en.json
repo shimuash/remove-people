@@ -217,6 +217,8 @@
       "password": "Password",
       "signIn": "Sign In",
       "signUpHint": "Don't have an account? Sign up",
+      "signUpHintText": "Don't have an account?",
+      "signUpLinkText": "Sign up",
       "forgotPassword": "Forgot Password?",
       "signInWithGoogle": "Sign In with Google",
       "signInWithGitHub": "Sign In with GitHub",
@@ -236,6 +238,8 @@
       "password": "Password",
       "signUp": "Sign Up",
       "signInHint": "Already have an account? Sign in",
+      "signInHintText": "Already have an account?",
+      "signInLinkText": "Sign in",
       "checkEmail": "Please check your email inbox",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
@@ -274,6 +278,12 @@
       "byClickingContinue": "By clicking continue, you agree to our ",
       "and": " and "
     }
+  },
+  "AuthModal": {
+    "completingAuth": "Completing authentication...",
+    "authCancelled": "Authentication was cancelled",
+    "authFailed": "Authentication failed, please try again",
+    "popupBlocked": "Popup was blocked, redirecting..."
   },
   "BlogPage": {
     "title": "Blog",

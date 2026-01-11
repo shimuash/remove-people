@@ -33,11 +33,21 @@ import { SocialLoginButton } from './social-login-button';
 export interface LoginFormProps {
   className?: string;
   callbackUrl?: string;
+  renderSocialLogin?: (props: {
+    callbackUrl: string;
+    showDivider: boolean;
+  }) => React.ReactNode;
+  /** Custom footer renderer for AuthCard */
+  renderFooter?: () => React.ReactNode;
+  onSuccess?: () => void;
 }
 
 export const LoginForm = ({
   className,
   callbackUrl: propCallbackUrl,
+  renderSocialLogin,
+  renderFooter,
+  onSuccess,
 }: LoginFormProps) => {
   const t = useTranslations('AuthPage.login');
   const searchParams = useSearchParams();
@@ -126,11 +136,12 @@ export const LoginForm = ({
     // 1. if callbackUrl is provided, user will be redirected to the callbackURL after login successfully.
     // if user email is not verified, a new verification email will be sent to the user with the callbackURL.
     // 2. if callbackUrl is not provided, we should redirect manually in the onSuccess callback.
+    // 3. if onSuccess callback is provided (Modal mode), don't pass callbackURL to avoid redirect.
     await authClient.signIn.email(
       {
         email: values.email,
         password: values.password,
-        callbackURL: callbackUrl,
+        callbackURL: onSuccess ? undefined : callbackUrl,
       },
       {
         onRequest: (ctx) => {
@@ -145,8 +156,10 @@ export const LoginForm = ({
         },
         onSuccess: (ctx) => {
           // console.log("login, success:", ctx.data);
-          // setSuccess("Login successful");
-          // router.push(callbackUrl || "/dashboard");
+          // If onSuccess callback provided (Modal mode), call it instead of redirect
+          if (onSuccess) {
+            onSuccess();
+          }
         },
         onError: (ctx) => {
           // console.error('login, error:', ctx.error);
@@ -170,6 +183,7 @@ export const LoginForm = ({
       bottomButtonLabel={t('signUpHint')}
       bottomButtonHref={`${Routes.Register}`}
       className={cn('', className)}
+      renderFooter={renderFooter}
     >
       {credentialLoginEnabled && (
         <Form {...form}>
@@ -273,10 +287,17 @@ export const LoginForm = ({
         </Form>
       )}
       <div className="mt-4">
-        <SocialLoginButton
-          callbackUrl={callbackUrl}
-          showDivider={credentialLoginEnabled}
-        />
+        {renderSocialLogin ? (
+          renderSocialLogin({
+            callbackUrl,
+            showDivider: !!credentialLoginEnabled,
+          })
+        ) : (
+          <SocialLoginButton
+            callbackUrl={callbackUrl}
+            showDivider={credentialLoginEnabled}
+          />
+        )}
       </div>
     </AuthCard>
   );

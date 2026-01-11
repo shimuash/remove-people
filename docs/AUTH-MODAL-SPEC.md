@@ -2,15 +2,6 @@
 
 ---
 
-## 修订记录
-
-| 日期 | 修订内容 |
-|------|----------|
-| v1.2 | 根据 Review 反馈更新：1) 移除 `errorCallbackURL`，使用默认 `Routes.AuthError`；2) 修正 `disableRedirect` 返回值为 `result.data.url`；3) RegisterForm 添加 `onSuccess` 回调，注册成功后关闭 Modal；4) 补充 `credentialLoginEnabled` 来源说明；5) 补充 Navbar 修改示例；6) 新增 race condition 处理说明；7) 复用现有翻译 key；8) 简化 oauth-callback 页面 |
-| v1.1 | 根据 Review 反馈更新：1) 添加 `errorCallbackURL` 处理 OAuth 失败；2) Modal 内邮箱登录不传 callbackUrl，使用 `onSuccess` + `refetch()` 实现无刷新；3) 使用 `getLocalePathname` 兼容 `localePrefix: 'as-needed'`；4) 采用"先开窗后设 URL"策略避免 Popup 被拦截；5) 统一使用 `window.location.href` 保留完整 URL；6) 按钮添加 `type="button"` |
-
----
-
 ## 概述
 
 本文档描述了统一登录注册弹窗功能的技术规格。该功能允许用户在 Modal 弹窗内完成登录和注册，无需页面跳转，同时支持通过 Popup 弹窗方式进行 Google/GitHub OAuth 授权。
@@ -87,7 +78,7 @@ AuthModal 打开（显示登录视图）
 
 | 项目 | 决策 | 理由 |
 |------|------|------|
-| 视图切换 | AuthCard 添加 `onBottomButtonClick` 可选回调 | 显式回调比隐式事件委托更稳健 |
+| 视图切换 | AuthCard 添加 `renderFooter` 可选 render prop | 最小破坏性，完全自定义 footer 渲染 |
 | Social Login 注入 | 为表单添加 `renderSocialLogin` prop | 允许注入自定义组件，不修改现有逻辑 |
 | 状态管理 | 使用 Zustand store 管理 Modal 状态 | 与项目架构一致 |
 | callbackUrl | Store 不设默认值，由调用方决定 | 职责分离，不同场景需要不同行为 |
@@ -180,9 +171,9 @@ AuthModal 打开（显示登录视图）
 
 | 文件 | 改动 |
 |------|------|
-| `src/components/auth/auth-card.tsx` | 添加 `onBottomButtonClick?: () => void` 可选 prop |
-| `src/components/auth/login-form.tsx` | 添加 `renderSocialLogin`、`onSwitchToRegister`、`onSuccess` 可选 props |
-| `src/components/auth/register-form.tsx` | 添加 `renderSocialLogin`、`onSwitchToLogin`、`onSuccess` 可选 props |
+| `src/components/auth/auth-card.tsx` | 添加 `renderFooter?: () => React.ReactNode` 可选 render prop |
+| `src/components/auth/login-form.tsx` | 添加 `renderSocialLogin`、`renderFooter`、`onSuccess` 可选 props |
+| `src/components/auth/register-form.tsx` | 添加 `renderSocialLogin`、`renderFooter`、`onSuccess` 可选 props |
 | `src/components/layout/navbar.tsx` | 登录/注册按钮改为调用 store 方法 |
 | `src/app/[locale]/layout.tsx` | 添加 `<AuthModalProvider />` |
 
@@ -287,34 +278,59 @@ Modal 内登录与独立页面登录的 callbackUrl 处理策略不同：
 
 **结构：**
 ```tsx
-<Dialog open={isOpen} onOpenChange={handleOpenChange}>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle />
-    </DialogHeader>
-    {view === 'login' ? (
-      <LoginForm
-        // 不传 callbackUrl，避免登录成功后触发 redirect
-        renderSocialLogin={renderPopupSocialLogin}
-        onSwitchToRegister={() => setView('register')}
-        onSuccess={handleLoginSuccess}  // 新增：登录成功回调
-      />
-    ) : (
-      <RegisterForm
-        // 不传 callbackUrl，避免注册成功后触发 redirect
-        renderSocialLogin={renderPopupSocialLogin}
-        onSwitchToLogin={() => setView('login')}
-      />
-    )}
-  </DialogContent>
-</Dialog>
+export function AuthModal() {
+  const { isOpen, view, setView, close } = useAuthModalStore()
+  const { refetch: refreshSession } = authClient.useSession()
+
+  const handleSuccess = useCallback(async () => {
+    await refreshSession()
+    close()
+  }, [close, refreshSession])
+
+  // Custom footer for login form - switch to register
+  const renderLoginFooter = useCallback(
+    () => (
+      <button
+        type="button"
+        onClick={() => setView('register')}
+        className="w-full text-center text-sm text-muted-foreground"
+      >
+        {t('login.signUpHintText')}{' '}
+        <span className="text-primary hover:underline">
+          {t('login.signUpLinkText')}
+        </span>
+      </button>
+    ),
+    [setView, t]
+  )
+
+  return (
+    <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
+      <DialogContent>
+        {view === 'login' ? (
+          <LoginForm
+            renderSocialLogin={renderPopupSocialLogin}
+            renderFooter={renderLoginFooter}
+            onSuccess={handleSuccess}
+          />
+        ) : (
+          <RegisterForm
+            renderSocialLogin={renderPopupSocialLogin}
+            renderFooter={renderRegisterFooter}
+            onSuccess={handleSuccess}
+          />
+        )}
+      </DialogContent>
+    </Dialog>
+  )
+}
 ```
 
 **关键点：**
 - **不传 callbackUrl**：Modal 内的表单不传 callbackUrl，避免触发 redirect
 - 邮箱登录成功后通过 `onSuccess` 回调通知 Modal，Modal 调用 `refetch()` 刷新会话后关闭
-- 通过 `onSwitchToRegister` / `onSwitchToLogin` 回调实现视图切换
-- 回调方式比事件委托更稳健，不依赖 URL 字符串匹配
+- 通过 `renderFooter` render prop 自定义 footer 渲染，实现视图切换和自定义样式
+- render prop 方式最小化对现有组件的破坏性
 
 **Modal 关闭时机：**
 
@@ -327,32 +343,29 @@ Modal 内登录与独立页面登录的 callbackUrl 处理策略不同：
 
 ### 3. auth-card.tsx 修改
 
-**新增可选 prop：**
+**新增可选 render prop：**
 ```typescript
 interface AuthCardProps {
   // ... existing props
-  onBottomButtonClick?: () => void  // 新增
+  /** Custom footer renderer, replaces default BottomLink when provided */
+  renderFooter?: () => React.ReactNode
 }
 ```
 
 **渲染逻辑：**
 ```typescript
-{onBottomButtonClick ? (
-  <button
-    type="button"  // 防止被表单捕获触发提交
-    onClick={onBottomButtonClick}
-    className="..."
-  >
-    {bottomButtonLabel}
-  </button>
-) : (
-  <BottomLink label={bottomButtonLabel} href={bottomButtonHref} />
-)}
+<CardFooter>
+  {renderFooter ? (
+    renderFooter()
+  ) : (
+    <BottomLink label={bottomButtonLabel} href={bottomButtonHref} />
+  )}
+</CardFooter>
 ```
 
 **向后兼容性：**
-- 不传 `onBottomButtonClick` 时，行为与之前完全一致（使用 Link 跳转）
-- Modal 内使用时传入回调，实现视图切换
+- 不传 `renderFooter` 时，行为与之前完全一致（使用 BottomLink 跳转）
+- Modal 内使用时传入自定义渲染函数，完全控制 footer 内容和样式
 
 ### 4. oauth-callback/page.tsx
 

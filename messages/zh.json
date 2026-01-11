@@ -217,6 +217,8 @@
       "password": "密码",
       "signIn": "登录",
       "signUpHint": "没有账号？注册",
+      "signUpHintText": "没有账号？",
+      "signUpLinkText": "注册",
       "forgotPassword": "忘记密码？",
       "signInWithGoogle": "使用 Google 登录",
       "signInWithGitHub": "使用 GitHub 登录",
@@ -236,6 +238,8 @@
       "password": "密码",
       "signUp": "注册",
       "signInHint": "已经有账号？登录",
+      "signInHintText": "已经有账号？",
+      "signInLinkText": "登录",
       "checkEmail": "请检查您的邮箱",
       "showPassword": "显示密码",
       "hidePassword": "隐藏密码",
@@ -274,6 +278,12 @@
       "byClickingContinue": "继续即表示您同意我们的 ",
       "and": " 和 "
     }
+  },
+  "AuthModal": {
+    "completingAuth": "正在完成认证...",
+    "authCancelled": "认证已取消",
+    "authFailed": "认证失败，请重试",
+    "popupBlocked": "弹窗被拦截，正在跳转..."
   },
   "BlogPage": {
     "title": "博客",

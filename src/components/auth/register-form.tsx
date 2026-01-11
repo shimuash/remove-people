@@ -29,11 +29,23 @@ import { Captcha } from '../shared/captcha';
 import { SocialLoginButton } from './social-login-button';
 
 interface RegisterFormProps {
+  className?: string;
   callbackUrl?: string;
+  renderSocialLogin?: (props: {
+    callbackUrl: string;
+    showDivider: boolean;
+  }) => React.ReactNode;
+  /** Custom footer renderer for AuthCard */
+  renderFooter?: () => React.ReactNode;
+  onSuccess?: () => void;
 }
 
 export const RegisterForm = ({
+  className,
   callbackUrl: propCallbackUrl,
+  renderSocialLogin,
+  renderFooter,
+  onSuccess,
 }: RegisterFormProps) => {
   const t = useTranslations('AuthPage.register');
   const searchParams = useSearchParams();
@@ -126,12 +138,13 @@ export const RegisterForm = ({
     // the user will be redirected to the callbackURL after the email is verified.
     // 2. if requireEmailVerification is false, the user will not be redirected to the callbackURL,
     // we should redirect to the callbackURL manually in the onSuccess callback.
+    // 3. if onSuccess callback is provided (Modal mode), don't pass callbackURL to avoid redirect.
     await authClient.signUp.email(
       {
         email: values.email,
         password: values.password,
         name: values.name,
-        callbackURL: callbackUrl,
+        callbackURL: onSuccess ? undefined : callbackUrl,
       },
       {
         onRequest: (ctx) => {
@@ -154,6 +167,11 @@ export const RegisterForm = ({
           if (websiteConfig.features.enableAffonsoAffiliate) {
             console.log('register, affonso affiliate:', values.email);
             window.Affonso.signup(values.email);
+          }
+
+          // If onSuccess callback provided (Modal mode), call it
+          if (onSuccess) {
+            onSuccess();
           }
         },
         onError: (ctx) => {
@@ -178,6 +196,8 @@ export const RegisterForm = ({
       headerLabel={t('createAccount')}
       bottomButtonLabel={t('signInHint')}
       bottomButtonHref={`${Routes.Login}`}
+      className={className}
+      renderFooter={renderFooter}
     >
       {credentialLoginEnabled && (
         <Form {...form}>
@@ -283,10 +303,17 @@ export const RegisterForm = ({
         </Form>
       )}
       <div className="mt-4">
-        <SocialLoginButton
-          callbackUrl={callbackUrl}
-          showDivider={credentialLoginEnabled}
-        />
+        {renderSocialLogin ? (
+          renderSocialLogin({
+            callbackUrl,
+            showDivider: !!credentialLoginEnabled,
+          })
+        ) : (
+          <SocialLoginButton
+            callbackUrl={callbackUrl}
+            showDivider={credentialLoginEnabled}
+          />
+        )}
       </div>
     </AuthCard>
   );

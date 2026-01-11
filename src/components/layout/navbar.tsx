@@ -1,12 +1,11 @@
 'use client';
 
-import { LoginWrapper } from '@/components/auth/login-wrapper';
 import Container from '@/components/layout/container';
 import { Logo } from '@/components/layout/logo';
 import { ModeSwitcher } from '@/components/layout/mode-switcher';
 import { NavbarMobile } from '@/components/layout/navbar-mobile';
 import { UserButton } from '@/components/layout/user-button';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,7 +20,7 @@ import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
-import { Routes } from '@/routes';
+import { useAuthModalStore } from '@/stores/auth-modal-store';
 import { ArrowUpRightIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
@@ -50,6 +49,7 @@ export function Navbar({ scroll, className }: NavBarProps) {
   const [mounted, setMounted] = useState(false);
   const { data: session, isPending } = authClient.useSession();
   const currentUser = session?.user;
+  const { openLogin, openRegister } = useAuthModalStore();
   // console.log(`Navbar, user:`, user);
 
   useEffect(() => {
@@ -226,28 +226,22 @@ export function Navbar({ scroll, className }: NavBarProps) {
               </>
             ) : (
               <div className="flex items-center gap-x-3">
-                <LoginWrapper mode="modal" asChild>
-                  <Button
-                    variant="outline"
-                    className="cursor-pointer rounded-full"
-                    size="sm"
-                  >
-                    {t('Common.login')}
-                  </Button>
-                </LoginWrapper>
+                <Button
+                  variant="outline"
+                  className="cursor-pointer rounded-full"
+                  size="sm"
+                  onClick={() => openLogin()}
+                >
+                  {t('Common.login')}
+                </Button>
 
-                <LocaleLink
-                  href={Routes.Register}
-                  className={cn(
-                    buttonVariants({
-                      variant: 'default',
-                      size: 'sm',
-                    }),
-                    'rounded-full'
-                  )}
+                <Button
+                  className="cursor-pointer rounded-full"
+                  size="sm"
+                  onClick={() => openRegister()}
                 >
                   Try for free
-                </LocaleLink>
+                </Button>
               </div>
             )}
 
