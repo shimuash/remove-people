@@ -3,15 +3,8 @@
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useEditorStore } from './hooks/use-editor-state';
-import type { ViewportInsets } from './types';
 
-interface CompareViewProps {
-  viewportInsets?: ViewportInsets;
-}
-
-const DEFAULT_VIEWPORT_INSETS = { top: 0, right: 0, bottom: 0, left: 0 };
-
-export default function CompareView({ viewportInsets }: CompareViewProps) {
+export default function CompareView() {
   const t = useTranslations('ImageEditor');
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -22,6 +15,9 @@ export default function CompareView({ viewportInsets }: CompareViewProps) {
     isCompareMode,
     comparePosition,
     setComparePosition,
+    stagePosition,
+    imageSize,
+    zoomLevel,
   } = useEditorStore();
 
   // Handle slider drag
@@ -67,21 +63,23 @@ export default function CompareView({ viewportInsets }: CompareViewProps) {
     };
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
-  if (!isCompareMode || !originalImage || !currentImage) {
+  if (!isCompareMode || !originalImage || !currentImage || !imageSize) {
     return null;
   }
 
-  const safeInsets = viewportInsets ?? DEFAULT_VIEWPORT_INSETS;
+  // Calculate the actual image bounds on the canvas
+  const displayWidth = imageSize.width * zoomLevel;
+  const displayHeight = imageSize.height * zoomLevel;
 
   return (
     <div
       ref={containerRef}
-      className="absolute overflow-hidden select-none"
+      className="absolute overflow-hidden select-none pointer-events-auto"
       style={{
-        top: safeInsets.top,
-        right: safeInsets.right,
-        bottom: safeInsets.bottom,
-        left: safeInsets.left,
+        left: stagePosition.x,
+        top: stagePosition.y,
+        width: displayWidth,
+        height: displayHeight,
       }}
     >
       {/* Original image (left side) */}
@@ -92,7 +90,7 @@ export default function CompareView({ viewportInsets }: CompareViewProps) {
         <img
           src={originalImage}
           alt={t('compare.original')}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full max-h-full object-contain"
+          className="absolute inset-0 w-full h-full object-fill"
           draggable={false}
         />
         {/* Original label */}
@@ -109,7 +107,7 @@ export default function CompareView({ viewportInsets }: CompareViewProps) {
         <img
           src={currentImage}
           alt={t('compare.current')}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full max-h-full object-contain"
+          className="absolute inset-0 w-full h-full object-fill"
           draggable={false}
         />
         {/* Current label */}

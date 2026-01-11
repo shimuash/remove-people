@@ -82,7 +82,7 @@ export default function ImageEditorDialog() {
           />
 
           {/* Compare overlay */}
-          {isCompareMode && <CompareView viewportInsets={viewportInsets} />}
+          {isCompareMode && <CompareView />}
 
           {/* Left side controls (zoom) */}
           {!isCompareMode && (
