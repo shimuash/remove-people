@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { websiteConfig } from '@/config/website';
 import { useCreditBalance } from '@/hooks/use-credits';
 import { useLocaleRouter } from '@/i18n/navigation';
+import { authClient } from '@/lib/auth-client';
 import { Routes } from '@/routes';
 import { CoinsIcon, Loader2Icon } from 'lucide-react';
 
@@ -15,8 +16,12 @@ export function CreditsBalanceButton() {
 
   const router = useLocaleRouter();
 
+  // Get user session for user ID
+  const { data: session } = authClient.useSession();
+  const currentUser = session?.user;
+
   // Use TanStack Query hook for credit balance
-  const { data: balance = 0, isLoading } = useCreditBalance();
+  const { data: balance = 0, isLoading } = useCreditBalance(currentUser?.id);
 
   const handleClick = () => {
     router.push(Routes.SettingsCredits);

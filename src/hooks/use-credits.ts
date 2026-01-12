@@ -19,23 +19,30 @@ interface SimpleFilter {
 // Query keys
 export const creditsKeys = {
   all: ['credits'] as const,
-  balance: () => [...creditsKeys.all, 'balance'] as const,
-  stats: () => [...creditsKeys.all, 'stats'] as const,
-  transactions: () => [...creditsKeys.all, 'transactions'] as const,
-  transactionsList: (filters: {
-    pageIndex: number;
-    pageSize: number;
-    search: string;
-    sorting: SortingState;
-    filters: SimpleFilter[];
-  }) => [...creditsKeys.transactions(), filters] as const,
+  balance: (userId: string) => [...creditsKeys.all, 'balance', userId] as const,
+  stats: (userId: string) => [...creditsKeys.all, 'stats', userId] as const,
+  transactions: (userId: string) =>
+    [...creditsKeys.all, 'transactions', userId] as const,
+  transactionsList: (
+    userId: string,
+    filters: {
+      pageIndex: number;
+      pageSize: number;
+      search: string;
+      sorting: SortingState;
+      filters: SimpleFilter[];
+    }
+  ) => [...creditsKeys.transactions(userId), filters] as const,
 };
 
 // Hook to fetch credit balance
-export function useCreditBalance() {
+export function useCreditBalance(userId: string | undefined) {
   return useQuery({
-    queryKey: creditsKeys.balance(),
+    queryKey: creditsKeys.balance(userId || ''),
     queryFn: async () => {
+      if (!userId) {
+        throw new Error('User ID is required');
+      }
       console.log('Fetching credit balance...');
       const result = await getCreditBalanceAction();
       if (!result?.data?.success) {
@@ -47,14 +54,18 @@ export function useCreditBalance() {
       console.log('Credit balance fetched:', result.data.credits);
       return result.data.credits || 0;
     },
+    enabled: !!userId,
   });
 }
 
 // Hook to fetch credit statistics
-export function useCreditStats() {
+export function useCreditStats(userId: string | undefined) {
   return useQuery({
-    queryKey: creditsKeys.stats(),
+    queryKey: creditsKeys.stats(userId || ''),
     queryFn: async () => {
+      if (!userId) {
+        throw new Error('User ID is required');
+      }
       console.log('Fetching credit stats...');
       const result = await getCreditStatsAction();
       if (!result?.data?.success) {
@@ -64,11 +75,12 @@ export function useCreditStats() {
       console.log('Credit stats fetched:', result.data.data);
       return result.data.data;
     },
+    enabled: !!userId,
   });
 }
 
 // Hook to consume credits
-export function useConsumeCredits() {
+export function useConsumeCredits(userId: string | undefined) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -90,12 +102,16 @@ export function useConsumeCredits() {
       return result.data;
     },
     onSuccess: () => {
-      // Invalidate credit balance and stats after consuming credits
+      if (!userId) return;
+      // Invalidate credit balance, stats, and transactions after consuming credits
       queryClient.invalidateQueries({
-        queryKey: creditsKeys.balance(),
+        queryKey: creditsKeys.balance(userId),
       });
       queryClient.invalidateQueries({
-        queryKey: creditsKeys.stats(),
+        queryKey: creditsKeys.stats(userId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: creditsKeys.transactions(userId),
       });
     },
   });
@@ -103,6 +119,7 @@ export function useConsumeCredits() {
 
 // Hook to fetch credit transactions with pagination, search, sorting, and filters
 export function useCreditTransactions(
+  userId: string | undefined,
   pageIndex: number,
   pageSize: number,
   search: string,
@@ -110,7 +127,7 @@ export function useCreditTransactions(
   filters: SimpleFilter[]
 ) {
   return useQuery({
-    queryKey: creditsKeys.transactionsList({
+    queryKey: creditsKeys.transactionsList(userId || '', {
       pageIndex,
       pageSize,
       search,
@@ -118,6 +135,9 @@ export function useCreditTransactions(
       filters,
     }),
     queryFn: async () => {
+      if (!userId) {
+        throw new Error('User ID is required');
+      }
       const result = await getCreditTransactionsAction({
         pageIndex,
         pageSize,
@@ -138,6 +158,7 @@ export function useCreditTransactions(
         total: result.data.data?.total || 0,
       };
     },
+    enabled: !!userId,
     placeholderData: keepPreviousData,
   });
 }

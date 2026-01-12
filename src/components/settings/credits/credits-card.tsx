@@ -14,6 +14,7 @@ import { websiteConfig } from '@/config/website';
 import { useCreditBalance, useCreditStats } from '@/hooks/use-credits';
 import { useMounted } from '@/hooks/use-mounted';
 import { CREDITS_EXPIRATION_DAYS } from '@/lib/constants';
+import { authClient } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
 import { RefreshCwIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -31,13 +32,17 @@ export default function CreditsCard() {
   const t = useTranslations('Dashboard.settings.credits.balance');
   const mounted = useMounted();
 
+  // Get user session for user ID
+  const { data: session } = authClient.useSession();
+  const currentUser = session?.user;
+
   // Use TanStack Query hooks for credits
   const {
     data: balance = 0,
     isLoading: isLoadingBalance,
     error: balanceError,
     refetch: refetchBalance,
-  } = useCreditBalance();
+  } = useCreditBalance(currentUser?.id);
 
   // TanStack Query hook for credit statistics
   const {
@@ -45,7 +50,7 @@ export default function CreditsCard() {
     isLoading: isLoadingStats,
     error: statsError,
     refetch: refetchStats,
-  } = useCreditStats();
+  } = useCreditStats(currentUser?.id);
 
   // Retry all data fetching using refetch methods
   const handleRetry = useCallback(() => {

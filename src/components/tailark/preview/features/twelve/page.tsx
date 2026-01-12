@@ -22,19 +22,19 @@ export default function Features() {
 
   const images = {
     'item-1': {
-      image: '/blocks/charts.png',
+      image: 'https://cdn.mksaas.com/blocks/charts.png',
       alt: 'Database visualization',
     },
     'item-2': {
-      image: '/blocks/music.png',
+      image: 'https://cdn.mksaas.com/blocks/music.png',
       alt: 'Security authentication',
     },
     'item-3': {
-      image: '/blocks/mail2.png',
+      image: 'https://cdn.mksaas.com/blocks/mail2.png',
       alt: 'Identity management',
     },
     'item-4': {
-      image: '/blocks/payments.png',
+      image: 'https://cdn.mksaas.com/blocks/payments.png',
       alt: 'Analytics dashboard',
     },
   };

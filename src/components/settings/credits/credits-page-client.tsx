@@ -8,6 +8,7 @@ import CreditsCard from '@/components/settings/credits/credits-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import type { CreditTransaction } from '@/credits/types';
 import { useCreditTransactions } from '@/hooks/use-credits';
+import { authClient } from '@/lib/auth-client';
 import type { ColumnFiltersState, SortingState } from '@tanstack/react-table';
 import { useTranslations } from 'next-intl';
 import {
@@ -24,6 +25,10 @@ import { useEffect, useMemo, useRef } from 'react';
  */
 export default function CreditsPageClient() {
   const t = useTranslations('Dashboard.settings.credits');
+
+  // Get user session for user ID
+  const { data: session } = authClient.useSession();
+  const currentUser = session?.user;
 
   const sortableColumnIds = useMemo<
     Array<Extract<keyof CreditTransaction, string>>
@@ -139,6 +144,7 @@ export default function CreditsPageClient() {
 
   // Fetch credit transactions data
   const { data, isLoading } = useCreditTransactions(
+    currentUser?.id,
     page,
     size,
     search,

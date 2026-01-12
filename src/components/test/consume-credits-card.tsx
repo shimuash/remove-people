@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { useConsumeCredits, useCreditBalance } from '@/hooks/use-credits';
+import { authClient } from '@/lib/auth-client';
 import { CoinsIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -9,8 +10,14 @@ import { toast } from 'sonner';
 const CONSUME_CREDITS = 10;
 
 export function ConsumeCreditsCard() {
-  const { data: balance = 0, isLoading: isLoadingBalance } = useCreditBalance();
-  const consumeCreditsMutation = useConsumeCredits();
+  // Get user session for user ID
+  const { data: session } = authClient.useSession();
+  const currentUser = session?.user;
+
+  const { data: balance = 0, isLoading: isLoadingBalance } = useCreditBalance(
+    currentUser?.id
+  );
+  const consumeCreditsMutation = useConsumeCredits(currentUser?.id);
   const [loading, setLoading] = useState(false);
 
   const hasEnoughCredits = (amount: number) => balance >= amount;

@@ -29,8 +29,8 @@ import { Captcha } from '../shared/captcha';
 import { SocialLoginButton } from './social-login-button';
 
 interface RegisterFormProps {
-  className?: string;
   callbackUrl?: string;
+  className?: string;
   renderSocialLogin?: (props: {
     callbackUrl: string;
     showDivider: boolean;
@@ -41,8 +41,8 @@ interface RegisterFormProps {
 }
 
 export const RegisterForm = ({
-  className,
   callbackUrl: propCallbackUrl,
+  className,
   renderSocialLogin,
   renderFooter,
   onSuccess,

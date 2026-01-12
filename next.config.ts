@@ -9,15 +9,6 @@ const nextConfig: NextConfig = {
   // Docker standalone output
   ...(process.env.DOCKER_BUILD === 'true' && { output: 'standalone' }),
 
-  /* config options here */
-  devIndicators: false,
-
-  // https://nextjs.org/docs/architecture/nextjs-compiler#remove-console
-  // Remove all console.* calls in production only
-  compiler: {
-    // removeConsole: process.env.NODE_ENV === 'production',
-  },
-
   // https://github.com/vercel/next.js/discussions/50177#discussioncomment-6006702
   // fix build error: Module build failed: UnhandledSchemeError:
   // Reading from "cloudflare:sockets" is not handled by plugins (Unhandled scheme).
@@ -30,12 +21,30 @@ const nextConfig: NextConfig = {
     return config;
   },
 
+  /* config options here */
+  devIndicators: false,
+
+  // https://nextjs.org/docs/architecture/nextjs-compiler#remove-console
+  // Remove all console.* calls in production only
+  compiler: {
+    // removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // https://nextjs.org/docs/app/api-reference/config/next-config-js/htmlLimitedBots
+  // This config allows you to specify a list of user agents that should receive
+  // blocking metadata instead of streaming metadata
+  htmlLimitedBots: /.*/,
+
   images: {
     // https://vercel.com/docs/image-optimization/managing-image-optimization-costs#minimizing-image-optimization-costs
     // https://nextjs.org/docs/app/api-reference/components/image#unoptimized
     // vercel has limits on image optimization, 1000 images per month
     unoptimized: process.env.DISABLE_IMAGE_OPTIMIZATION === 'true',
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.mksaas.com',
+      },
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',

@@ -4,10 +4,8 @@ import {
   File,
   Files,
   Folder,
-  ImageZoom,
   InlineTOC,
 } from '@/components/docs/lazy';
-import BannerImage from '@/public/images/docs/banner.png';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Card } from 'fumadocs-ui/components/card';
@@ -92,19 +90,6 @@ export function typeTable(): ReactNode {
           }}
         />
       </div>
-    </Wrapper>
-  );
-}
-
-export function zoomImage(): ReactNode {
-  return (
-    <Wrapper>
-      <ImageZoom
-        alt="banner"
-        src={BannerImage}
-        className="!my-0 rounded-xl bg-fd-background"
-        priority
-      />
     </Wrapper>
   );
 }

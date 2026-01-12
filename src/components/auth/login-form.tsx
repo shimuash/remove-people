@@ -160,6 +160,8 @@ export const LoginForm = ({
           if (onSuccess) {
             onSuccess();
           }
+          // setSuccess("Login successful");
+          // router.push(callbackUrl || "/dashboard");
         },
         onError: (ctx) => {
           // console.error('login, error:', ctx.error);

@@ -20,6 +20,7 @@ import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
+import { Routes } from '@/routes';
 import { useAuthModalStore } from '@/stores/auth-modal-store';
 import { ArrowUpRightIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
