@@ -1,6 +1,5 @@
 'use client';
 
-import { LoginWrapper } from '@/components/auth/login-wrapper';
 import Container from '@/components/layout/container';
 import { Logo } from '@/components/layout/logo';
 import { ModeSwitcher } from '@/components/layout/mode-switcher';
@@ -21,6 +20,7 @@ import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
+import { useAuthModalStore } from '@/stores/auth-modal-store';
 import { Routes } from '@/routes';
 import { ArrowUpRightIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -30,6 +30,7 @@ import LocaleSwitcher from './locale-switcher';
 
 interface NavBarProps {
   scroll?: boolean;
+  className?: string;
 }
 
 const customNavigationMenuTriggerStyle = cn(
@@ -41,7 +42,7 @@ const customNavigationMenuTriggerStyle = cn(
   'data-[state=open]:bg-transparent data-[state=open]:text-accent-foreground'
 );
 
-export function Navbar({ scroll }: NavBarProps) {
+export function Navbar({ scroll, className }: NavBarProps) {
   const t = useTranslations();
   const scrolled = useScroll(50);
   const menuLinks = useNavbarLinks();
@@ -49,6 +50,7 @@ export function Navbar({ scroll }: NavBarProps) {
   const [mounted, setMounted] = useState(false);
   const { data: session, isPending } = authClient.useSession();
   const currentUser = session?.user;
+  const { openLogin, openRegister } = useAuthModalStore();
   // console.log(`Navbar, user:`, user);
 
   useEffect(() => {
@@ -63,7 +65,8 @@ export function Navbar({ scroll }: NavBarProps) {
           ? scrolled
             ? 'bg-muted/50 backdrop-blur-md border-b supports-backdrop-filter:bg-muted/50'
             : 'bg-transparent'
-          : 'border-b bg-muted/50'
+          : 'border-b bg-muted/50',
+        className
       )}
     >
       <Container className="px-4">
@@ -226,27 +229,22 @@ export function Navbar({ scroll }: NavBarProps) {
               </>
             ) : (
               <div className="flex items-center gap-x-4">
-                <LoginWrapper mode="modal" asChild>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="cursor-pointer"
-                  >
-                    {t('Common.login')}
-                  </Button>
-                </LoginWrapper>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="cursor-pointer"
+                  onClick={() => openLogin()}
+                >
+                  {t('Common.login')}
+                </Button>
 
-                <LocaleLink
-                  href={Routes.Register}
-                  className={cn(
-                    buttonVariants({
-                      variant: 'default',
-                      size: 'sm',
-                    })
-                  )}
+                <Button
+                  className="cursor-pointer rounded-full"
+                  size="sm"
+                  onClick={() => openRegister()}
                 >
                   {t('Common.signUp')}
-                </LocaleLink>
+                </Button>
               </div>
             )}
 

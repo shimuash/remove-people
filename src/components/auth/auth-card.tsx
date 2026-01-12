@@ -18,6 +18,8 @@ interface AuthCardProps {
   bottomButtonLabel: string;
   bottomButtonHref: string;
   className?: string;
+  /** Custom footer renderer, replaces default BottomLink when provided */
+  renderFooter?: () => React.ReactNode;
 }
 
 export const AuthCard = ({
@@ -26,6 +28,7 @@ export const AuthCard = ({
   bottomButtonLabel,
   bottomButtonHref,
   className,
+  renderFooter,
 }: AuthCardProps) => {
   return (
     <Card className={cn('shadow-xs border border-border', className)}>
@@ -37,7 +40,11 @@ export const AuthCard = ({
       </CardHeader>
       <CardContent>{children}</CardContent>
       <CardFooter>
-        <BottomLink label={bottomButtonLabel} href={bottomButtonHref} />
+        {renderFooter ? (
+          renderFooter()
+        ) : (
+          <BottomLink label={bottomButtonLabel} href={bottomButtonHref} />
+        )}
       </CardFooter>
     </Card>
   );
