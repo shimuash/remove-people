@@ -17,17 +17,14 @@
 2. **H1 Hero + Uploader**
 3. **H2 How it works (3 steps)**
 4. **H2 Real-world results (Scenarios + Gallery)**
-   - 5 scenario blocks, each with Before/After slider + zoom verification note
-5. **H2 Brush removal quality proof**
-   - H3 The 100% zoom test
-   - H3 What "clean" means (checklist)
-   - H3 Overlap? We handle it.
-6. **H2 Continue editing (AI Edit) — 4 capabilities**
-   - Re-frame after removal, Change background, Adjust pose, Style & mood
-7. **H2 Privacy & Trust**
-8. **H2 Pricing**
-9. **H2 FAQ**
-10. **H2 Final CTA**
+   - 5 scenario blocks, each with Before/After slider + effect description
+   - Overlap callout (差异化亮点收尾)
+5. **H2 Go beyond removal — 4 capabilities**
+   - Fill space & re-compose, Move people closer, Change background, Polish the look
+6. **H2 Privacy & Trust**
+7. **H2 Pricing**
+8. **H2 FAQ**
+9. **H2 Final CTA**
 
 ---
 
@@ -78,7 +75,7 @@ Brush only the person or people you want gone—results appear as you brush. Eve
 Export when it looks right. Zoom in to double-check edges before you save.
 
 **One-line add-on:**
-After removal, you can optionally go further inside the editor with AI Edit—like re-framing, background changes, or style adjustments.
+After removal, you can go further inside the editor—fill empty space, move people closer, or swap the background entirely.
 
 ---
 
@@ -86,7 +83,7 @@ After removal, you can optionally go further inside the editor with AI Edit—li
 
 **Subtitle:** Common scenarios people search for—solved with a simple brush workflow.
 
-**Verification cue:** Click any example to **zoom in** and inspect **edges, patterns, and shadows**—that's where "fake-looking" edits get exposed.
+**Verification cue:** Every example below holds up at 100% zoom. Click to inspect edges, textures, and shadows yourself.
 
 **Slider labels (global):** Original / Cleaned
 
@@ -95,9 +92,9 @@ After removal, you can optionally go further inside the editor with AI Edit—li
 #### H3 1) Travel landmarks / crowds
 
 **Copy:**
-Turn busy travel shots into cleaner memories. Use the brush to **remove background people from photos** while keeping the landmark and your main subject intact.
+Turn busy travel shots into cleaner memories. Use the brush to **remove background people from photos** while keeping the landmark and your main subject intact. 
 
-**What to verify at 100%:** straight lines (rails/buildings), repeating textures (brick/stone), and ground shadows.
+Straight lines stay straight, brick and stone textures flow naturally, and ground shadows disappear with the people who cast them—even at 100% zoom.
 
 **Alt text (Before):** "Crowded landmark photo with background tourists."
 **Alt text (After):** "Same landmark photo after removing people from the background."
@@ -107,9 +104,9 @@ Turn busy travel shots into cleaner memories. Use the brush to **remove backgrou
 #### H3 2) Photobombers
 
 **Copy:**
-**Remove photobombers from photos** when someone jumps into the frame at the worst moment. Brush the photobomber only—your subject stays untouched.
+**Remove photobombers from photos** when someone jumps into the frame at the worst moment. Brush the photobomber only—your subject stays untouched. 
 
-**What to verify at 100%:** hair/shoulder edges, clothing seams, and contact points on the ground.
+Hair and shoulder edges stay crisp, clothing seams remain intact, and contact points on the ground blend seamlessly.
 
 **Alt text (Before):** "Street photo with a photobomber behind the subject."
 **Alt text (After):** "Street photo after removing the photobomber cleanly."
@@ -119,9 +116,9 @@ Turn busy travel shots into cleaner memories. Use the brush to **remove backgrou
 #### H3 3) Keep only certain people (keep X, remove Y)
 
 **Copy:**
-Keep the people you care about and remove the rest—whether that's background strangers, someone who's no longer in your life, or anyone you'd rather not keep in the frame. This is the fastest way to **remove unwanted people from pictures** without redoing the whole photo.
+Keep the people you care about and remove the rest—whether that's background strangers, someone who's no longer in your life, or anyone you'd rather not keep in the frame. This is the fastest way to **remove unwanted people from pictures** without redoing the whole photo. 
 
-**What to verify at 100%:** edges where removed people were close to the group, plus any shared shadows.
+Edges where removed people stood close to the group stay clean, and shared shadows are handled naturally.
 
 **Alt text (Before):** "Group photo with several extra people in the frame."
 **Alt text (After):** "Group photo with only selected people kept after removal."
@@ -131,9 +128,9 @@ Keep the people you care about and remove the rest—whether that's background s
 #### H3 4) Solo portrait from a group shot
 
 **Copy:**
-Need a clean "just me" photo? **Remove others from a group shot** to create a solo portrait—for a memorial slideshow, presentation, profile photo, or resume.
+Need a clean "just me" photo? **Remove others from a group shot** to create a solo portrait—for a memorial slideshow, presentation, profile photo, or resume. 
 
-**What to verify at 100%:** skin texture, background continuity, and any overlap near shoulders/hair.
+Skin texture stays natural, the background fills in seamlessly, and even tricky areas near shoulders and hair come out clean.
 
 **Alt text (Before):** "Group photo intended to be turned into a solo portrait."
 **Alt text (After):** "Solo portrait created by removing other people from the group photo."
@@ -143,90 +140,75 @@ Need a clean "just me" photo? **Remove others from a group shot** to create a so
 #### H3 5) Print-worthy moments
 
 **Copy:**
-For weddings, events, invitations, and framed prints, small mistakes become obvious. Brush removal helps you get a cleaner photo that still looks authentic—especially when you zoom in.
+For weddings, events, invitations, and framed prints, small mistakes become obvious. Brush removal helps you get a cleaner photo that still looks authentic. 
 
-**What to verify at 100%:** fine detail (lace, hair, fabric edges), lighting consistency, and pattern repetition.
+Fine details like lace, hair, and fabric edges stay sharp. Lighting stays consistent. Patterns don't repeat unnaturally. The result holds up at full resolution—ready for print.
 
 **Alt text (Before):** "Event photo with distracting background people."
 **Alt text (After):** "Event photo cleaned for a print-ready look after removing people."
+
+---
+
+#### Overlap callout
+
+**Title:** What about overlap?
+
+**Copy:**
+When people are pressed together—hair crossing, arms touching, shoulders overlapping—most removal tools leave obvious artifacts or smeared edges. Ours doesn't. Brush carefully in tight areas and get clean, natural results where others fail. Zoom in and see for yourself.
+
+---
 
 **Under-gallery CTA:** Upload your photo to try it now.
 
 ---
 
-### H2 Brush removal quality proof
-
-**Opening:**
-"Clean" means your photo doesn't look weird or fake—especially when you **zoom to 100%**. If the edit falls apart up close, it's not done.
-
-#### H3 The 100% zoom test
-
-Zoom in and look for anything that screams "edited": repeated patterns, smudged edges, warped lines, or impossible shadows.
-
-#### H3 What "clean" means (quick checklist)
-
-- **Texture continuity:** grass, waves, walls, tiles don't break or repeat in blocks.
-- **Structure stays straight:** rails, window frames, signs don't warp.
-- **Lighting matches:** shadows and highlights make sense in the scene.
-- **Edges stay sharp:** hair, hands, clothing seams don't look melted.
-- **Shadows make sense:** removed people don't leave ghost shadows or floating edges.
-
-#### H3 Overlap? We handle it.
-
-When people overlap—hair crossing, arms touching, shoulders pressed together—most tools struggle. Our brush handles these tight edges cleanly. Zoom in, work in small sections, and get natural results even where others fail.
-
-**Print note:**
-Higher-resolution photos preserve more fine detail—especially for print use. Pro exports up to 4K.
-
-**Inline CTA:** Upload Photo
-
----
-
-### H2 Continue editing (AI Edit) — optional, after removal
+### H2 Go beyond removal
 
 **Lead:**
-Brush removal gives you a clean result you can export immediately. If you want to take it further, AI Edit unlocks creative options **after** the cleanup is done—no extra editing required for a clean removal.
+Most removal tools stop at removal. Got an awkward gap where someone used to be? A lopsided composition? You're on your own—unless you want to open Photoshop.
+
+We let you keep going. Fill the empty space, move people closer together, swap the background, or adjust the overall look—all inside the same editor, right after removal.
 
 **How to access:**
-After brush removal, click **"Continue Editing"** inside the editor to use AI Edit.
+After brush removal, click **"Continue Editing"** inside the editor.
 
 **Slider labels (this module):** After removal / After AI Edit
 
 ---
 
-#### H3 1) Re-frame after removal
+#### H3 1) Fill space and re-compose
 
-Refine composition once the distraction is gone—re-center the subject, tighten the crop, and fill remaining space naturally.
+Removed someone from the edge of the frame? Now there's an awkward gap. Fill it naturally and re-center your subject—no need to crop away half the photo.
 
-**Alt text (Before):** "Photo after removing people, composition still feels off."
-**Alt text (After):** "Same photo re-framed after removal for a cleaner composition."
-
----
-
-#### H3 2) Change background
-
-Swap the setting to match the moment—clean studio, scenic location, or a simpler backdrop that fits your photo.
-
-**Alt text (Before):** "Cleaned photo with original background."
-**Alt text (After):** "Cleaned photo with a new background applied."
+**Alt text (Before):** "Photo after removing a person, with awkward empty space on one side."
+**Alt text (After):** "Same photo with space filled and subject re-centered."
 
 ---
 
-#### H3 3) Adjust pose
+#### H3 2) Move people closer
 
-Make precise posture and pose adjustments to get a more natural, intentional look.
+Removed the person in the middle of a group? Now the others look awkwardly far apart. Bring them together naturally—no cutting and pasting, no obvious seams.
 
-**Alt text (Before):** "Cleaned photo with original pose."
-**Alt text (After):** "Cleaned photo with adjusted pose."
+**Alt text (Before):** "Group photo after removal, with a visible gap between remaining people."
+**Alt text (After):** "Same group photo with people moved closer together."
 
 ---
 
-#### H3 4) Style and mood
+#### H3 3) Change background
 
-Tune lighting and color for a consistent vibe—natural, cinematic, studio, or warm event tones.
+The removal is done, but the background doesn't match the moment. Swap to a cleaner backdrop—studio, scenic, or simply less distracting.
 
-**Alt text (Before):** "Cleaned photo with original color and lighting."
-**Alt text (After):** "Cleaned photo with updated style and mood."
+**Alt text (Before):** "Cleaned photo with original busy background."
+**Alt text (After):** "Cleaned photo with a new, simpler background."
+
+---
+
+#### H3 4) Polish the look
+
+Unify lighting and color so the final result feels intentional—natural tones, cinematic contrast, or a warmer mood for events and portraits.
+
+**Alt text (Before):** "Cleaned photo with original lighting and color."
+**Alt text (After):** "Cleaned photo with polished lighting and color."
 
 **Plan note:**
 AI Edit is available inside the editor after removal. See Pricing for plan details.
@@ -298,7 +280,7 @@ Start free for quick sharing. Upgrade for **4K exports**, **faster processing**,
    Yes. For large crowds, removing in smaller sections helps keep textures and lines looking natural.
 
 6. **Can I move people closer together after removal?**
-   Yes. After brush removal, use "Continue Editing" to re-frame, adjust composition, or fill space naturally with AI Edit.
+   Yes. After brush removal, click "Continue Editing" to bring people together naturally—no cutting and pasting required.
 
 #### Quality
 
@@ -392,12 +374,17 @@ Start free for quick sharing. Upgrade for **4K exports**, **faster processing**,
 ## Changelog from Previous Version
 
 1. **Added "relationship change" scenario** — Scenario 3 now includes "someone who's no longer in your life" language
-2. **Added shadow to quality checklist** — "Shadows make sense: removed people don't leave ghost shadows"
-3. **Repositioned Overlap as strength** — Changed from "hardest case" to "We handle it" with confident language
-4. **Clarified AI Edit positioning** — Lead now explicitly states brush removal is complete on its own
-5. **Added 4 new FAQ questions** — Move people closer, faces unchanged, processing time, photo storage
-6. **Strengthened Privacy section** — Added "not used to train AI" and "deleted within 30 days"
-7. **Clarified Pricing resolution** — Pro tier now explicitly states "4K export"
-8. **Added real-time language** — "Results appear as you brush" in multiple places
-9. **Added "remove photobombers" keyword** — Now used in Scenario 2 copy
-10. **Added "remove others from a group shot" keyword** — Now used in Scenario 4 and keyword plan
+2. **Deleted Quality Proof module** — Content merged into Scenarios for a shorter, more direct page structure
+3. **Transformed "What to verify" into effect descriptions** — Each scenario now describes what we achieve (textures, edges, shadows) instead of asking users to check
+4. **Added Overlap callout** — Positioned as Gallery closing highlight, emphasizing product strength
+5. **Repositioned Overlap as strength** — Changed from "hardest case" to "Ours doesn't [fail]" with confident language
+6. **Rewrote AI Edit module as "Go beyond removal"** — New title, new lead with competitive contrast, removed defensive "optional" language
+7. **Reorganized AI Edit capabilities** — New order: Fill space & re-compose, Move people closer (new), Change background, Polish the look. Removed Adjust pose
+8. **Added "Move people closer" capability** — Addresses high-frequency Reddit user need (scoot people together after removal)
+9. **Rewrote capability descriptions** — Changed from feature descriptions to "problem → solution" format
+10. **Added 4 new FAQ questions** — Move people closer, faces unchanged, processing time, photo storage
+11. **Strengthened Privacy section** — Added "not used to train AI" and "deleted within 30 days"
+12. **Clarified Pricing resolution** — Pro tier now explicitly states "4K export"
+13. **Added real-time language** — "Results appear as you brush" in multiple places
+14. **Added "remove photobombers" keyword** — Now used in Scenario 2 copy
+15. **Added "remove others from a group shot" keyword** — Now used in Scenario 4 and keyword plan
