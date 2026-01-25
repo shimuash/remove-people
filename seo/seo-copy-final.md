@@ -20,8 +20,8 @@
 4. **H2 Real-world results (Scenarios + Gallery)**
    - 6 scenario blocks, each with Before/After slider + effect description
    - Overlap callout (差异化亮点收尾)
-5. **H2 Go beyond removal — 4 capabilities**
-   - Fill space & re-compose, Move people closer, Change background, Polish the look
+5. **H2 Go beyond removal — 5 capabilities**
+   - Extend the frame & re-compose, Move people closer, Change background, Polish the look, Enhance resolution
 6. **H2 Privacy & Trust**
 7. **H2 Pricing**
 8. **H2 FAQ**
@@ -55,8 +55,13 @@ Upload a photo, brush over the people you want gone, and download a clean result
 - Clean, natural-looking results (even at 100% zoom).
 - Results in seconds as you brush—no waiting, no queue.
 - Keep X, remove Y: you choose exactly who stays in the frame.
-- Go further after removal—move people closer, change backgrounds, all in one editor.
+- Ready to download or print—removal is the finished result.
 - Privacy-first: your photos are never shared or used for training.
+
+<!-- DESIGN NOTE: The following "Bonus" section should be visually secondary (smaller text, muted color, or separated layout) to clearly indicate it's an optional extension, not a core step. -->
+
+**Bonus:**
+Want to do even more? After your photo is done, you can also move people closer, swap backgrounds, upscale low-res photos, or adjust the composition—all in the same editor. No Photoshop needed.
 
 **Primary CTA:** Upload Photo
 **Secondary CTA:** Try a sample *(clicks load a random demo image for instant preview)*
@@ -74,11 +79,13 @@ Pick the photo you want to clean up.
 **Step 2 — Brush to remove people**
 Brush only the person or people you want gone—results appear as you brush. Everything else stays untouched.
 
-**Step 3 — Download your clean photo**
-Export when it looks right. Zoom in to double-check edges before you save.
+**Step 3 — Download your finished photo**
+Your photo is ready. Export and use it anywhere—social media, print, or archive. Zoom in to double-check edges before you save.
 
-**One-line add-on:**
-Want to go further? After removal, you can fill empty space, move people closer, or swap the background entirely—all inside the same editor.
+<!-- DESIGN NOTE: The following "Optional" section should be visually secondary (smaller text or muted style) to reinforce that removal alone is complete. -->
+
+**Optional:**
+Already happy with the result? You're done. Want to do more? You can also move people closer, swap backgrounds, upscale for print, or adjust the composition—click "Continue Editing" inside the editor.
 
 ---
 
@@ -119,7 +126,7 @@ Hair and shoulder edges stay crisp, clothing seams remain intact, and contact po
 #### H3 3) Remove your ex
 
 **Copy:**
-Relationship over but the photos aren't? **Remove your ex from photos** and keep the memories that matter—without the person who doesn't. No need to send private photos to strangers on Reddit or pay someone you don't trust.
+Relationship over but the photos aren't? **Remove your ex from photos** and keep the memories that matter—without the person who doesn't. No need to send private photos to strangers online or pay someone you don't know.
 
 Brush over your ex, download a clean result, and move on. Edges stay clean, backgrounds fill naturally, and no one will know they were ever there.
 
@@ -182,9 +189,9 @@ Brush carefully in tight areas and get clean, natural results where others fail.
 ### H2 Go beyond removal
 
 **Lead:**
-Brush removal gives you a clean result. But sometimes you want to do more—close the gap where someone stood, bring people together, or change a distracting background.
+Your removal is complete—ready to download and use. But sometimes you want to take it further: recompose the frame, bring people together, or try a different background.
 
-Most tools stop at removal. Open Photoshop for the rest. We let you keep going—all inside the same editor, right after removal. This is what sets us apart.
+Most tools stop at removal. For anything else, you'd open Photoshop. We let you keep creating—all inside the same editor, right after removal. This is what sets us apart.
 
 **How to access:**
 After brush removal, click **"Continue Editing"** inside the editor.
@@ -193,24 +200,24 @@ After brush removal, click **"Continue Editing"** inside the editor.
 
 ---
 
-#### H3 1) Fill space and re-compose
+#### H3 1) Extend the frame and re-compose
 
-Other tools leave you with an awkward gap. Ours lets you fill it.
+Want a wider shot or a different crop? Expand the canvas and reposition your subject—no need to settle for what the original frame gave you.
 
-Removed someone from the edge of the frame? Fill the empty space naturally and re-center your subject—no need to crop away half the photo.
+Other tools stop at removal. Ours lets you reshape the entire composition.
 
-**Alt text (Before):** "Photo after removing a person, with awkward empty space on one side."
-**Alt text (After):** "Same photo with space filled and subject re-centered."
+**Alt text (Before):** "Photo after removal, with subject off-center."
+**Alt text (After):** "Same photo with extended frame and subject re-centered."
 
 ---
 
 #### H3 2) Move people closer
 
-Other tools leave a hole in the middle. Ours lets you close it.
+Want a tighter group shot? Bring everyone together naturally—no cutting and pasting, no obvious seams.
 
-Removed the person in the middle of a group? Bring everyone together naturally—no cutting and pasting, no obvious seams.
+Other tools stop at removal. Ours lets you reposition who's left.
 
-**Alt text (Before):** "Group photo after removal, with a visible gap between remaining people."
+**Alt text (Before):** "Group photo after removal, with space between remaining people."
 **Alt text (After):** "Same group photo with people moved closer together."
 
 ---
@@ -231,7 +238,18 @@ Unify lighting and color so the final result feels intentional—natural tones, 
 **Alt text (Before):** "Cleaned photo with original lighting and color."
 **Alt text (After):** "Cleaned photo with polished lighting and color."
 
-**Plan note:**
+---
+
+#### H3 5) Enhance resolution
+
+Working with a video screenshot or an old low-res photo? Upscale it to print-ready quality. Details get sharper, textures stay natural, and the result holds up at larger sizes.
+
+**Alt text (Before):** "Low-resolution photo with visible pixelation."
+**Alt text (After):** "Same photo upscaled with enhanced clarity and detail."
+
+<!-- DESIGN NOTE: Display a subtle inline note or badge indicating AI Edit requires Pro plan. -->
+
+**Pro feature note:**
 AI Edit features require Pro. Start with free trial credits to test removal quality.
 
 ---
@@ -273,7 +291,7 @@ Try free with limited credits. Upgrade for **unlimited removals**, **4K exports*
 - **Unlimited removals**
 - **4K export** (full resolution for printing and close-up viewing)
 - Priority processing
-- Full AI Edit access (fill space, move people, change background, polish)
+- Full AI Edit access (extend frame, move people, change background, polish, upscale)
 - Commercial-friendly usage
 
 **Button:** Upgrade to Pro
@@ -336,7 +354,7 @@ Try free with limited credits. Upgrade for **unlimited removals**, **4K exports*
     Yes—use it in a modern mobile browser (Safari or Chrome). No app download needed.
 
 16. **Can I use a video screenshot or low-resolution image?**
-    Yes, but lower-resolution sources limit fine detail—especially for print. Best results come from original photos when possible.
+    Yes. For better results, use "Continue Editing" to upscale after removal—details get sharper and the photo becomes print-ready.
 
 17. **Can I remove people from multiple photos at once (batch)?**
     Not yet. Each photo is processed individually for now.
@@ -445,3 +463,22 @@ Try free with limited credits. Upgrade for **unlimited removals**, **4K exports*
 17. **Expanded keyword plan** — Added "remove ex from photo" and "remove strangers from photos" variants
 18. **Added 2 long-tail questions** — "Can I remove my ex" and "Does it remove shadows automatically"
 19. **Adjusted CTA structure** — Header nav gets "Try It Free"; Hero Primary stays "Upload Photo"; Hero Secondary "Try a sample" loads random demo image
+
+## Changelog from v3 (Current)
+
+**Theme: Avoid "Continue Editing" being misread as "removal isn't complete"**
+
+1. **Restructured Hero trust points into primary + secondary layers** — Primary layer focuses on removal quality and completeness; "Continue Editing" moved to secondary "Bonus capability" section with explicit "visually smaller" note
+2. **Added "completion signal" to trust points** — New point: "Ready to download or print—removal is the finished result"
+3. **Renamed Step 3** — From "Download your clean photo" to "Download your finished photo" for stronger completion framing
+4. **Rewrote Step 3 description** — Now leads with "Your photo is ready" to establish completion before any optional next steps
+5. **Restructured "One-line add-on"** — Renamed to "Optional next step" with explicit "Already happy? You're done." before mentioning Continue Editing
+6. **Rewrote "Go beyond removal" lead** — Now opens with "Your removal is complete—ready to download and use" before introducing extended capabilities
+7. **Changed "close the gap" to "recompose the frame"** — Avoids implying removal leaves gaps that need fixing
+8. **Renamed Capability 1** — From "Fill space and re-compose" to "Extend the frame and re-compose" — avoids "fill" which implies emptiness
+9. **Rewrote Capability 1 & 2 descriptions** — Removed "gap/hole" language; reframed as creative expansion ("Want a wider shot?", "Want a tighter group?") rather than problem-fixing
+10. **Updated alt text** — Changed "awkward empty space" to neutral "subject off-center"
+11. **Applied time-sequence framing throughout** — All "Continue Editing" mentions now follow explicit completion statements
+12. **Generalized "strangers on Reddit"** — Changed to "strangers online" to avoid niche reference and maintain professional tone
+13. **Separated implementation notes from user-facing copy** — All design/layout instructions (e.g., "visually secondary") now use HTML comments to prevent accidental rendering
+14. **Added "Enhance resolution" (upscaler) as 5th AI Edit capability** — Addresses low-res/video screenshot use case; updated Hero Bonus, Step 3 Optional, FAQ, and Pricing accordingly
