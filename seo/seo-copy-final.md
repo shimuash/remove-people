@@ -20,12 +20,13 @@
 4. **H2 Real-world results (Scenarios + Gallery)**
    - 6 scenario blocks, each with Before/After slider + effect description
    - Overlap callout (差异化亮点收尾)
-5. **H2 Go beyond removal — 5 capabilities**
+5. **H2 Powered by Google Nano Banana (Tech + Social Proof)**
+6. **H2 Go beyond removal — 5 capabilities**
    - Extend the frame & re-compose, Move people closer, Change background, Polish the look, Enhance resolution
-6. **H2 Privacy & Trust**
-7. **H2 Pricing**
-8. **H2 FAQ**
-9. **H2 Final CTA**
+7. **H2 Privacy & Trust**
+8. **H2 Pricing**
+9. **H2 FAQ**
+10. **H2 Final CTA**
 
 ---
 
@@ -183,6 +184,29 @@ Brush carefully in tight areas and get clean, natural results where others fail.
 ---
 
 **Under-gallery CTA:** Try it free—upload your photo now.
+
+---
+
+### H2 Powered by Google Nano Banana
+
+**Lead:**
+Our removal engine is built on Google Nano Banana—the same AI behind Gemini 2.5 Flash Image. It understands scene structure, preserves lighting and shadows, and fills removed areas with context-aware detail.
+
+That's why edges stay clean, textures don't repeat unnaturally, and results hold up at 100% zoom.
+
+---
+
+#### What people are saying about Nano Banana
+
+<!-- PLACEHOLDER: Add 3-5 curated social proof quotes here. Collect from Twitter/X, Reddit, or tech reviews. -->
+
+> "Had to do a double take."
+> — Reddit user, r/GeminiAI
+
+> "And just like that, the age of photographic evidence is over."
+> — @AlexanderPayton (2.4M views on X)
+
+> [Add more quotes as you collect them]
 
 ---
 
@@ -464,7 +488,15 @@ Try free with limited credits. Upgrade for **unlimited removals**, **4K exports*
 18. **Added 2 long-tail questions** — "Can I remove my ex" and "Does it remove shadows automatically"
 19. **Adjusted CTA structure** — Header nav gets "Try It Free"; Hero Primary stays "Upload Photo"; Hero Secondary "Try a sample" loads random demo image
 
-## Changelog from v3 (Current)
+## Changelog from v4 (Current)
+
+1. **Added "Powered by Google Nano Banana" section** — New H2 module between Real-world results and Go beyond removal, providing technical credibility via Google Gemini 2.5 Flash Image association
+2. **Added social proof placeholder** — "What people are saying about Nano Banana" subsection with template quotes from Reddit and X for user to populate
+3. **Updated Page Outline** — Renumbered sections to accommodate new module (now 10 sections total)
+
+---
+
+## Changelog from v3
 
 **Theme: Avoid "Continue Editing" being misread as "removal isn't complete"**
 
