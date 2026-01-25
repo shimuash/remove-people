@@ -45,30 +45,24 @@
 
 **H1:** Remove people from photos online
 
-**Pain line:**
-Free apps leave weird artifacts. Photoshop takes hours. We give you clean results in seconds—without sending your photos to strangers.
+**描述:**
+Brush over anyone you want gone—results appear in seconds. Clean edges, natural backgrounds, no Photoshop needed.
 
-**Subhead:**
-Upload a photo, brush over the people you want gone, and download a clean result—while keeping everything you want to keep untouched. Results update in real time as you brush.
+**Dropzone:**
+Drag and drop an image here, or click to upload. Supports JPG, PNG, HEIC, WEBP.
 
-**Micro trust points:**
+**Try a sample:** *(below dropzone, loads a random demo image for instant preview)*
+Or try a sample image
 
-- Clean, natural-looking results (even at 100% zoom).
-- Results in seconds as you brush—no waiting, no queue.
-- Keep X, remove Y: you choose exactly who stays in the frame.
-- Ready to download or print—removal is the finished result.
-- Privacy-first: your photos are never shared or used for training.
+<!-- DESIGN NOTE: Trust badges should be small text or icon+text chips, visually secondary to the dropzone -->
 
-<!-- DESIGN NOTE: The following "Bonus" section should be visually secondary (smaller text, muted color, or separated layout) to clearly indicate it's an optional extension, not a core step. -->
+**Trust badges:** *(below "Try a sample", as small badges)*
 
-**Bonus:**
-Want to do even more? After your photo is done, you can also move people closer, swap backgrounds, upscale low-res photos, or adjust the composition—all in the same editor. No Photoshop needed.
-
-**Primary CTA:** Upload Photo
-**Secondary CTA:** Try a sample *(clicks load a random demo image for instant preview)*
-
-**Uploader helper:**
-Drag and drop an image here, or click to upload. Supports JPG, PNG, HEIC, and WEBP.
+- Clean, natural-looking results (even at 100% zoom)
+- Results in seconds—no waiting, no queue
+- Keep X, remove Y: you choose who stays
+- Ready to download or print
+- Privacy-first: never shared or used for training
 
 ---
 
@@ -493,6 +487,12 @@ Try free with limited credits. Upgrade for **unlimited removals**, **4K exports*
 1. **Added "Powered by Google Nano Banana" section** — New H2 module between Real-world results and Go beyond removal, providing technical credibility via Google Gemini 2.5 Flash Image association
 2. **Added social proof placeholder** — "What people are saying about Nano Banana" subsection with template quotes from Reddit and X for user to populate
 3. **Updated Page Outline** — Renumbered sections to accommodate new module (now 10 sections total)
+4. **Simplified Hero section** — Reduced from ~150 words to ~50 words for cleaner first impression
+5. **Removed Pain line** — "Free apps leave weird artifacts..." removed to reduce Hero density
+6. **Removed Bonus section from Hero** — AI Edit preview now handled entirely by "Go beyond removal" section
+7. **Restructured Hero layout** — New order: H1 → 描述 → Dropzone → Try a sample → Trust badges
+8. **Moved Trust points below Dropzone** — 5 trust points now displayed as small badges below the upload area
+9. **Moved "Try a sample" below Dropzone** — Secondary CTA now appears between Dropzone and Trust badges
 
 ---
 
