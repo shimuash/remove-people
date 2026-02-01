@@ -58,21 +58,21 @@ Or try a sample image
 
 **Trust badges:** *(below "Try a sample", as small badges)*
 
-- Clean, natural-looking results (even at 100% zoom)
-- Results in seconds—no waiting, no queue
-- Keep X, remove Y: you choose who stays
-- Ready to download or print
-- Privacy-first: never shared or used for training
+- Powered by Nano Banana
+- Clean at 100% zoom
+- Results in seconds
+- Choose who stays
+- Privacy-first
 
 ---
 
-### H2 How it works
+### How to remove people from photos
 
 **Step 1 — Upload your photo**
 Pick the photo you want to clean up.
 
 **Step 2 — Brush to remove people**
-Brush only the person or people you want gone—results appear as you brush. Everything else stays untouched.
+Brush to mark who goes, tap Apply, and see results in seconds. Everything else stays untouched.
 
 **Step 3 — Download your finished photo**
 Your photo is ready. Export and use it anywhere—social media, print, or archive. Zoom in to double-check edges before you save.
@@ -80,15 +80,13 @@ Your photo is ready. Export and use it anywhere—social media, print, or archiv
 <!-- DESIGN NOTE: The following "Optional" section should be visually secondary (smaller text or muted style) to reinforce that removal alone is complete. -->
 
 **Optional:**
-Already happy with the result? You're done. Want to do more? You can also move people closer, swap backgrounds, upscale for print, or adjust the composition—click "Continue Editing" inside the editor.
+Already happy with the result? You're done. Want to do more? You can also move people closer, swap backgrounds, upscale for print, or adjust the composition.[See what else you can do →](#go-beyond-removal)
 
 ---
 
-### H2 Real-world results
+### H2 See it in action
 
-**Subtitle:** Common scenarios people search for—solved with a simple brush workflow.
-
-**Verification cue:** Every example below holds up at 100% zoom. Click to inspect edges, textures, and shadows yourself.
+**Subtitle:** Every example holds up at 100% zoom. Click to inspect edges, textures, and shadows yourself.
 
 **Slider labels (global):** Original / Cleaned
 
@@ -130,12 +128,12 @@ Brush over your ex, download a clean result, and move on. Edges stay clean, back
 
 ---
 
-#### H3 4) Keep only certain people (keep X, remove Y)
+#### H3 4) Keep only certain people
 
 **Copy:**
 Keep the people you care about and **remove unwanted people from pictures**—whether that's background strangers, distant relatives, or anyone you'd rather not keep in the frame. This is the fastest way to clean up group photos without redoing the whole shot.
 
-Edges where removed people stood close to the group stay clean, and shared shadows are handled naturally.
+Even when people are pressed together—hair crossing, arms touching, shoulders overlapping—edges stay clean and shadows blend naturally. This is where most tools fail. Ours doesn't.
 
 **Alt text (Before):** "Group photo with several extra people in the frame."
 **Alt text (After):** "Group photo with only selected people kept after removal."
@@ -163,17 +161,6 @@ Fine details like lace, veils, hair, and fabric edges stay sharp. Lighting stays
 
 **Alt text (Before):** "Wedding photo with distracting background guests."
 **Alt text (After):** "Wedding photo cleaned for print after removing background people."
-
----
-
-#### Overlap callout
-
-**Title:** What about overlap?
-
-**Copy:**
-When people are pressed together—hair crossing, arms touching, shoulders overlapping—most removal tools smear edges or leave obvious artifacts. Ours doesn't.
-
-Brush carefully in tight areas and get clean, natural results where others fail. This is the hardest test for any removal tool. Zoom in and see for yourself.
 
 ---
 
@@ -439,78 +426,3 @@ Try free with limited credits. Upgrade for **unlimited removals**, **4K exports*
 - **Scenario titles/descriptions:** variants like "remove crowds," "remove strangers," "remove ex," "remove unwanted people," "solo portrait," "remove photobombers," "wedding photos"
 - **Brush proof:** "100% zoom," "doesn't look fake," edges/patterns/shadows
 - **FAQ:** long-tail questions covering quality first, then capability, technical, privacy
-
----
-
-## Changelog from v1
-
-1. **Added "relationship change" scenario** — Scenario 3 now includes "someone who's no longer in your life" language
-2. **Deleted Quality Proof module** — Content merged into Scenarios for a shorter, more direct page structure
-3. **Transformed "What to verify" into effect descriptions** — Each scenario now describes what we achieve (textures, edges, shadows) instead of asking users to check
-4. **Added Overlap callout** — Positioned as Gallery closing highlight, emphasizing product strength
-5. **Repositioned Overlap as strength** — Changed from "hardest case" to "Ours doesn't [fail]" with confident language
-6. **Rewrote AI Edit module as "Go beyond removal"** — New title, new lead with competitive contrast, removed defensive "optional" language
-7. **Reorganized AI Edit capabilities** — New order: Fill space & re-compose, Move people closer (new), Change background, Polish the look. Removed Adjust pose
-8. **Added "Move people closer" capability** — Addresses high-frequency Reddit user need (scoot people together after removal)
-9. **Rewrote capability descriptions** — Changed from feature descriptions to "problem → solution" format
-10. **Added 4 new FAQ questions** — Move people closer, faces unchanged, processing time, photo storage
-11. **Strengthened Privacy section** — Added "not used to train AI" and "deleted within 30 days"
-12. **Clarified Pricing resolution** — Pro tier now explicitly states "4K export"
-13. **Added real-time language** — "Results appear as you brush" in multiple places
-14. **Added "remove photobombers" keyword** — Now used in Scenario 2 copy
-15. **Added "remove others from a group shot" keyword** — Now used in Scenario 4 and keyword plan
-
-## Changelog from v2 (Current)
-
-1. **Repositioned AI Edit as key differentiator** — Updated Assumptions to clarify Continue Editing is a core competitive advantage, not just optional
-2. **Strengthened Pain line** — Added competitive attack: "Free apps leave weird artifacts" to directly address Reddit user complaints
-3. **Expanded Hero trust points** — Added speed ("Results in seconds") and differentiator preview ("Go further after removal")
-4. **Changed Primary CTA** — From "Upload Photo" to "Try It Free" to reflect paid-first model with trial
-5. **Added "Remove your ex" as standalone Scenario 3** — Aggressive language targeting high-emotion search intent with privacy angle
-6. **Renamed Scenario 5** — Now "Print-worthy moments (weddings & events)" with explicit "wedding photos" keyword
-7. **Added "strangers and tourists" keywords** — Scenario 1 now uses these high-search variants
-8. **Rewrote "Go beyond removal" lead** — Changed from problem-focused ("awkward gap") to capability-focused ("Brush removal gives you a clean result. But sometimes you want more...")
-9. **Added competitive contrast to AI Edit capabilities** — "Other tools leave you with a gap. Ours lets you fill it."
-10. **Strengthened Overlap callout** — Added "most removal tools smear edges" comparison and "This is the hardest test" framing
-11. **Reordered FAQ** — Quality questions now first (users care most about "will it look fake")
-12. **Added 3 new FAQ questions** — Shadow handling, hugging/touching scenarios, remove ex
-13. **Updated Pricing for paid-first model** — Free tier renamed to "Free Trial" with "limited credits" language; emphasized "test quality before you pay"
-14. **Shortened deletion window** — Changed from 30 days to 24 hours for stronger privacy messaging
-15. **Added "no human reviews" to Privacy** — Addresses Reddit users' concern about sending photos to strangers
-16. **Updated Final CTA** — Added "Try free—no signup required" to reduce friction
-17. **Expanded keyword plan** — Added "remove ex from photo" and "remove strangers from photos" variants
-18. **Added 2 long-tail questions** — "Can I remove my ex" and "Does it remove shadows automatically"
-19. **Adjusted CTA structure** — Header nav gets "Try It Free"; Hero Primary stays "Upload Photo"; Hero Secondary "Try a sample" loads random demo image
-
-## Changelog from v4 (Current)
-
-1. **Added "Powered by Google Nano Banana" section** — New H2 module between Real-world results and Go beyond removal, providing technical credibility via Google Gemini 2.5 Flash Image association
-2. **Added social proof placeholder** — "What people are saying about Nano Banana" subsection with template quotes from Reddit and X for user to populate
-3. **Updated Page Outline** — Renumbered sections to accommodate new module (now 10 sections total)
-4. **Simplified Hero section** — Reduced from ~150 words to ~50 words for cleaner first impression
-5. **Removed Pain line** — "Free apps leave weird artifacts..." removed to reduce Hero density
-6. **Removed Bonus section from Hero** — AI Edit preview now handled entirely by "Go beyond removal" section
-7. **Restructured Hero layout** — New order: H1 → 描述 → Dropzone → Try a sample → Trust badges
-8. **Moved Trust points below Dropzone** — 5 trust points now displayed as small badges below the upload area
-9. **Moved "Try a sample" below Dropzone** — Secondary CTA now appears between Dropzone and Trust badges
-
----
-
-## Changelog from v3
-
-**Theme: Avoid "Continue Editing" being misread as "removal isn't complete"**
-
-1. **Restructured Hero trust points into primary + secondary layers** — Primary layer focuses on removal quality and completeness; "Continue Editing" moved to secondary "Bonus capability" section with explicit "visually smaller" note
-2. **Added "completion signal" to trust points** — New point: "Ready to download or print—removal is the finished result"
-3. **Renamed Step 3** — From "Download your clean photo" to "Download your finished photo" for stronger completion framing
-4. **Rewrote Step 3 description** — Now leads with "Your photo is ready" to establish completion before any optional next steps
-5. **Restructured "One-line add-on"** — Renamed to "Optional next step" with explicit "Already happy? You're done." before mentioning Continue Editing
-6. **Rewrote "Go beyond removal" lead** — Now opens with "Your removal is complete—ready to download and use" before introducing extended capabilities
-7. **Changed "close the gap" to "recompose the frame"** — Avoids implying removal leaves gaps that need fixing
-8. **Renamed Capability 1** — From "Fill space and re-compose" to "Extend the frame and re-compose" — avoids "fill" which implies emptiness
-9. **Rewrote Capability 1 & 2 descriptions** — Removed "gap/hole" language; reframed as creative expansion ("Want a wider shot?", "Want a tighter group?") rather than problem-fixing
-10. **Updated alt text** — Changed "awkward empty space" to neutral "subject off-center"
-11. **Applied time-sequence framing throughout** — All "Continue Editing" mentions now follow explicit completion statements
-12. **Generalized "strangers on Reddit"** — Changed to "strangers online" to avoid niche reference and maintain professional tone
-13. **Separated implementation notes from user-facing copy** — All design/layout instructions (e.g., "visually secondary") now use HTML comments to prevent accidental rendering
-14. **Added "Enhance resolution" (upscaler) as 5th AI Edit capability** — Addresses low-res/video screenshot use case; updated Hero Bonus, Step 3 Optional, FAQ, and Pricing accordingly
