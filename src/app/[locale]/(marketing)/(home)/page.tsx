@@ -1,17 +1,12 @@
-import CallToActionSection from '@/components/blocks/calltoaction/calltoaction';
+import BeyondRemovalSection from '@/components/blocks/beyond-removal/beyond-removal';
 import FaqSection from '@/components/blocks/faqs/faqs';
-import FeaturesSection from '@/components/blocks/features/features';
-import Features2Section from '@/components/blocks/features/features2';
-import Features3Section from '@/components/blocks/features/features3';
+import FinalCtaSection from '@/components/blocks/final-cta/final-cta';
 import HeroSection from '@/components/blocks/hero/hero1';
-import IntegrationSection from '@/components/blocks/integration/integration';
-import Integration2Section from '@/components/blocks/integration/integration2';
-import LogoCloud from '@/components/blocks/logo-cloud/logo-cloud';
+import HowItWorksSection from '@/components/blocks/how-it-works/how-it-works';
 import PricingSection from '@/components/blocks/pricing/pricing';
-import StatsSection from '@/components/blocks/stats/stats';
-import TestimonialsSection from '@/components/blocks/testimonials/testimonials';
-import CrispChat from '@/components/layout/crisp-chat';
-import { NewsletterCard } from '@/components/newsletter/newsletter-card';
+import PrivacySection from '@/components/blocks/privacy/privacy';
+import ResultsSection from '@/components/blocks/results/results';
+import TechSection from '@/components/blocks/tech/tech';
 import { constructMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -36,48 +31,18 @@ export async function generateMetadata({
   });
 }
 
-interface HomePageProps {
-  params: Promise<{ locale: Locale }>;
-}
-
-export default async function HomePage(props: HomePageProps) {
-  const params = await props.params;
-  const { locale } = params;
-  const t = await getTranslations('HomePage');
-
+export default function HomePage() {
   return (
-    <>
-      <div className="flex flex-col">
-        <HeroSection />
-
-        {/* <LogoCloud />
-
-        <LogoCloud />
-
-        <StatsSection />
-
-        <IntegrationSection />
-
-        <FeaturesSection />
-
-        <Features2Section />
-
-        <Features3Section />
-
-        <Integration2Section />
-
-        <PricingSection />
-
-        <FaqSection />
-
-        <CallToActionSection />
-
-        <TestimonialsSection />
-
-        <NewsletterCard />
-
-        <CrispChat /> */}
-      </div>
-    </>
+    <div className="flex flex-col">
+      <HeroSection />
+      <HowItWorksSection />
+      <ResultsSection />
+      <TechSection />
+      <BeyondRemovalSection />
+      <PrivacySection />
+      <PricingSection />
+      <FaqSection />
+      <FinalCtaSection />
+    </div>
   );
 }

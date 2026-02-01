@@ -8,7 +8,7 @@ import {
   validateImageFile,
 } from '@/components/image-editor/lib/image-compositor';
 import { cn } from '@/lib/utils';
-import { CloudUpload, Image as ImageIcon } from 'lucide-react';
+import { CloudUpload } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -18,15 +18,33 @@ const ACCEPTED_TYPES = {
   'image/jpeg': ['.jpg', '.jpeg'],
   'image/png': ['.png'],
   'image/webp': ['.webp'],
+  'image/heic': ['.heic', '.heif'],
 };
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const EXAMPLE_IMAGE_IDS = [
+  '1506905925346-21bda4d32df4',
+  '1469474968028-56623f02e42e',
+  '1501785888041-af3ef285b470',
+  '1470071459604-3b5ec3a7fe05',
+] as const;
+
+const buildUnsplashUrl = (id: string, width: number, height: number) =>
+  `https://images.unsplash.com/photo-${id}?w=${width}&h=${height}&fit=crop`;
+
+const EXAMPLE_IMAGES = EXAMPLE_IMAGE_IDS.map((id) =>
+  buildUnsplashUrl(id, 1024, 768)
+);
+
+const EXAMPLE_THUMBNAILS = EXAMPLE_IMAGE_IDS.map((id) =>
+  buildUnsplashUrl(id, 128, 96)
+);
 
 interface ImageUploaderProps {
   className?: string;
 }
 
 export default function ImageUploader({ className }: ImageUploaderProps) {
-  const t = useTranslations('HomePage.remover');
+  const t = useTranslations('HomePage.hero');
   const tEditor = useTranslations('ImageEditor');
   const openEditor = useEditorStore((state) => state.openEditor);
 
@@ -68,15 +86,7 @@ export default function ImageUploader({ className }: ImageUploaderProps) {
 
   // Handle example image click
   const handleExampleClick = async (index: number) => {
-    // Example images - replace with actual example image URLs
-    const exampleImages = [
-      '/examples/example-1.jpg',
-      '/examples/example-2.jpg',
-      '/examples/example-3.jpg',
-      '/examples/example-4.jpg',
-    ];
-
-    const imageUrl = exampleImages[index];
+    const imageUrl = EXAMPLE_IMAGES[index];
     if (!imageUrl) return;
 
     try {
@@ -151,22 +161,31 @@ export default function ImageUploader({ className }: ImageUploaderProps) {
         </div>
 
         {/* Example Images */}
-        <div className="mt-4 grid grid-cols-4 gap-3 md:gap-4">
-          {[0, 1, 2, 3].map((index) => (
-            <div
-              key={index}
-              onClick={() => handleExampleClick(index)}
-              className={cn(
-                'aspect-[4/3] rounded-lg cursor-pointer overflow-hidden',
-                'bg-muted/40 border border-muted-foreground/10',
-                'flex items-center justify-center',
-                'transition-all duration-200',
-                'hover:opacity-80 hover:scale-[1.02] hover:border-muted-foreground/30'
-              )}
-            >
-              <ImageIcon className="size-8 text-muted-foreground/40" />
-            </div>
-          ))}
+        <div className="mt-6 flex flex-col items-center gap-3">
+          <p className="text-sm text-muted-foreground">{t('trySample')}</p>
+          <div className="flex gap-3">
+            {EXAMPLE_THUMBNAILS.map((thumbUrl, index) => (
+              <button
+                key={thumbUrl}
+                type="button"
+                onClick={() => handleExampleClick(index)}
+                aria-label={`Example ${index + 1}`}
+                className={cn(
+                  'size-12 rounded-lg cursor-pointer overflow-hidden',
+                  'bg-muted/40 border border-muted-foreground/10',
+                  'transition-all duration-200',
+                  'hover:opacity-80 hover:scale-105 hover:border-muted-foreground/30',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
+                )}
+              >
+                <img
+                  src={thumbUrl}
+                  alt={`Example ${index + 1}`}
+                  className="h-full w-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </>
