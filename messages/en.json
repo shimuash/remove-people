@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "name": "AnyRemover",
-    "title": "Remove People from Photos with AI Online - AnyRemover",
+    "title": "Remove People from Photos with AI Online",
     "description": "Remove unwanted people from photos instantly with AI. It's incredibly easy to erase tourists, strangers, or any person from your pictures and get flawless results."
   },
   "Common": {
@@ -799,25 +799,170 @@
     }
   },
   "HomePage": {
-    "title": "MkSaaS",
-    "description": "Make AI SaaS in days, simply and effortlessly",
     "hero": {
-      "title": "Make AI SaaS in days, simply and effortlessly",
-      "description": "The is a demo website built with MkSaaS, a Next.js SaaS boilerplate to help you build your AI SaaS faster and better.",
-      "introduction": "Introducing MkSaaS Boilerplate",
-      "primary": "Get Started",
-      "secondary": "See Demo"
-    },
-    "remover": {
-      "title": "Remove People from Photos with AI",
-      "description": "Easily remove unwanted people from photos. Upload, brush over the person, and our AI instantly removes people from photos online with clean, natural background blends and high-quality detail.",
+      "title": "Remove people from photos with AI",
+      "description": "Brush over anyone you want gone — results appear in seconds. Clean edges, natural backgrounds, no Photoshop needed.",
       "cta": "Upload Your Photo",
       "dropzone": {
-        "title": "Drop your image here",
+        "title": "Drag and drop an image here, or click to upload",
         "subtitle": "or click to browse",
-        "hint": "Supports JPG, PNG, WebP (Max 10MB)",
+        "hint": "Supports JPG, PNG, HEIC, WEBP (Max 10MB)",
         "dragActive": "Drop the image here"
+      },
+      "trySample": "Or try a sample image",
+      "trustBadges": {
+        "powered": "Powered by Nano Banana",
+        "clean": "Clean at 100% zoom",
+        "speed": "Results in seconds",
+        "control": "Choose who stays",
+        "privacy": "Privacy-first"
       }
+    },
+    "howItWorks": {
+      "title": "How to remove people from photos",
+      "steps": {
+        "step1": {
+          "title": "Upload your photo",
+          "description": "Pick the photo you want to clean up."
+        },
+        "step2": {
+          "title": "Brush to remove people",
+          "description": "Brush to mark who goes, tap Apply, and see results in seconds. Everything else stays untouched."
+        },
+        "step3": {
+          "title": "Download your finished photo",
+          "description": "Your photo is ready. Export and use it anywhere—social media, print, or archive. Zoom in to double-check edges before you save."
+        }
+      },
+      "optional": "Already happy with the result? You're done. Want to do more? You can also move people closer, swap backgrounds, upscale for print, or adjust the composition.",
+      "cta": "See what else you can do"
+    },
+    "results": {
+      "title": "See it in action",
+      "subtitle": "Every example holds up at 100% zoom. Click to inspect edges, textures, and shadows yourself.",
+      "sliderLabels": {
+        "before": "Original",
+        "after": "Cleaned"
+      },
+      "scenarios": {
+        "travel": {
+          "title": "Travel landmarks / crowds",
+          "copy": "Turn busy travel shots into cleaner memories. Use the brush to remove strangers and tourists from photos while keeping the landmark and your main subject intact.",
+          "details": "Straight lines stay straight, brick and stone textures flow naturally, and ground shadows disappear with the people who cast them—even at 100% zoom.",
+          "beforeAlt": "Crowded landmark photo with tourists and strangers in the background.",
+          "afterAlt": "Same landmark photo after removing strangers from the background."
+        },
+        "photobombers": {
+          "title": "Photobombers",
+          "copy": "Remove photobombers from photos when someone jumps into the frame at the worst moment. Brush the photobomber only—your subject stays untouched.",
+          "details": "Hair and shoulder edges stay crisp, clothing seams remain intact, and contact points on the ground blend seamlessly.",
+          "beforeAlt": "Street photo with a photobomber behind the subject.",
+          "afterAlt": "Street photo after removing the photobomber cleanly."
+        },
+        "ex": {
+          "title": "Remove your ex",
+          "copy": "Relationship over but the photos aren't? Remove your ex from photos and keep the memories that matter—without the person who doesn't. No need to send private photos to strangers online or pay someone you don't know.",
+          "details": "Brush over your ex, download a clean result, and move on. Edges stay clean, backgrounds fill naturally, and no one will know they were ever there.",
+          "beforeAlt": "Photo with ex-partner that needs to be removed.",
+          "afterAlt": "Photo after removing ex-partner, with clean natural background."
+        },
+        "keepSome": {
+          "title": "Keep only certain people",
+          "copy": "Keep the people you care about and remove unwanted people from pictures—whether that's background strangers, distant relatives, or anyone you'd rather not keep in the frame. This is the fastest way to clean up group photos without redoing the whole shot.",
+          "details": "Even when people are pressed together—hair crossing, arms touching, shoulders overlapping—edges stay clean and shadows blend naturally. This is where most tools fail. Ours doesn't.",
+          "beforeAlt": "Group photo with several extra people in the frame.",
+          "afterAlt": "Group photo with only selected people kept after removal."
+        },
+        "solo": {
+          "title": "Solo portrait from a group shot",
+          "copy": "Need a clean \"just me\" photo? Remove others from a group shot to create a solo portrait—for a memorial slideshow, presentation, profile photo, or resume.",
+          "details": "Skin texture stays natural, the background fills in seamlessly, and even tricky areas near shoulders and hair come out clean.",
+          "beforeAlt": "Group photo intended to be turned into a solo portrait.",
+          "afterAlt": "Solo portrait created by removing other people from the group photo."
+        },
+        "weddings": {
+          "title": "Print-worthy moments (weddings & events)",
+          "copy": "For wedding photos, formal events, invitations, and framed prints, small mistakes become obvious. Brush removal helps you get a cleaner photo that still looks authentic—ready when you need it, even on the same day.",
+          "details": "Fine details like lace, veils, hair, and fabric edges stay sharp. Lighting stays consistent. Patterns don't repeat unnaturally. The result holds up at full resolution—ready for print.",
+          "beforeAlt": "Wedding photo with distracting background guests.",
+          "afterAlt": "Wedding photo cleaned for print after removing background people."
+        }
+      },
+      "cta": "Try it free—upload your photo now."
+    },
+    "tech": {
+      "title": "Powered by Google Nano Banana",
+      "lead": "Our removal engine is built on Google Nano Banana—the same AI behind Gemini 2.5 Flash Image. It understands scene structure, preserves lighting and shadows, and fills removed areas with context-aware detail.",
+      "detail": "That's why edges stay clean, textures don't repeat unnaturally, and results hold up at 100% zoom.",
+      "socialProof": {
+        "title": "What people are saying about Nano Banana",
+        "quotes": {
+          "quote1": {
+            "text": "Had to do a double take.",
+            "author": "Reddit user, r/GeminiAI"
+          },
+          "quote2": {
+            "text": "And just like that, the age of photographic evidence is over.",
+            "author": "@AlexanderPayton (2.4M views on X)"
+          }
+        }
+      }
+    },
+    "beyondRemoval": {
+      "title": "Go beyond removal",
+      "lead": "Your removal is complete—ready to download and use. But sometimes you want to take it further: recompose the frame, bring people together, or try a different background.",
+      "contrast": "Most tools stop at removal. For anything else, you'd open Photoshop. We let you keep creating—all inside the same editor, right after removal. This is what sets us apart.",
+      "howToAccess": "After brush removal, click \"Continue Editing\" inside the editor.",
+      "sliderLabels": {
+        "before": "After removal",
+        "after": "After AI Edit"
+      },
+      "capabilities": {
+        "extend": {
+          "title": "Extend the frame and re-compose",
+          "description": "Want a wider shot or a different crop? Expand the canvas and reposition your subject—no need to settle for what the original frame gave you.",
+          "contrast": "Other tools stop at removal. Ours lets you reshape the entire composition.",
+          "beforeAlt": "Photo after removal, with subject off-center.",
+          "afterAlt": "Same photo with extended frame and subject re-centered."
+        },
+        "move": {
+          "title": "Move people closer",
+          "description": "Want a tighter group shot? Bring everyone together naturally—no cutting and pasting, no obvious seams.",
+          "contrast": "Other tools stop at removal. Ours lets you reposition who's left.",
+          "beforeAlt": "Group photo after removal, with space between remaining people.",
+          "afterAlt": "Same group photo with people moved closer together."
+        },
+        "background": {
+          "title": "Change background",
+          "description": "The removal is done, but the background doesn't match the moment. Swap to a cleaner backdrop—studio, scenic, or simply less distracting.",
+          "beforeAlt": "Cleaned photo with original busy background.",
+          "afterAlt": "Cleaned photo with a new, simpler background."
+        },
+        "polish": {
+          "title": "Polish the look",
+          "description": "Unify lighting and color so the final result feels intentional—natural tones, cinematic contrast, or a warmer mood for events and portraits.",
+          "beforeAlt": "Cleaned photo with original lighting and color.",
+          "afterAlt": "Cleaned photo with polished lighting and color."
+        },
+        "enhance": {
+          "title": "Enhance resolution",
+          "description": "Working with a video screenshot or an old low-res photo? Upscale it to print-ready quality. Details get sharper, textures stay natural, and the result holds up at larger sizes.",
+          "beforeAlt": "Low-resolution photo with visible pixelation.",
+          "afterAlt": "Same photo upscaled with enhanced clarity and detail."
+        }
+      },
+      "proNote": "AI Edit features require Pro. Start with free trial credits to test removal quality."
+    },
+    "privacy": {
+      "title": "Privacy first",
+      "body": "Your photos are uploaded, processed, and made available for download—never shared publicly. You stay in control from upload to download.",
+      "bullets": {
+        "encrypted": "Secure, encrypted processing",
+        "noTraining": "Photos are not used to train AI models",
+        "deleted": "All uploads are automatically deleted within 24 hours",
+        "noHuman": "No human reviews your photos"
+      },
+      "link": "Read our Privacy Policy"
     },
     "logocloud": {
       "title": "Your favorite companies are our partners"
@@ -924,33 +1069,117 @@
       }
     },
     "pricing": {
-      "title": "Pricing",
       "subtitle": "Pricing",
-      "description": "Choose the plan that works best for you"
+      "description": "Try free with limited credits. Upgrade for unlimited removals, 4K exports, and AI Edit.",
+      "freeTrial": {
+        "title": "Free Trial",
+        "tagline": "test removal quality",
+        "features": {
+          "feature1": "Limited free credits to try",
+          "feature2": "Standard export (good for social media)",
+          "feature3": "Brush removal with real-time preview",
+          "feature4": "See results before you pay"
+        },
+        "cta": "Start Free Trial"
+      },
+      "pro": {
+        "title": "Pro",
+        "tagline": "for serious results",
+        "features": {
+          "feature1": "Unlimited removals",
+          "feature2": "4K export (full resolution for printing and close-up viewing)",
+          "feature3": "Priority processing",
+          "feature4": "Full AI Edit access (extend frame, move people, change background, polish, upscale)",
+          "feature5": "Commercial-friendly usage"
+        },
+        "cta": "Upgrade to Pro"
+      },
+      "footnote": "Free trial lets you test quality before committing. See Pricing for full plan details."
     },
     "faqs": {
       "title": "FAQ",
-      "subtitle": "Frequently Asked Questions",
+      "categories": {
+        "quality": "Quality",
+        "capability": "Capability",
+        "technical": "Technical",
+        "privacy": "Privacy"
+      },
       "items": {
-        "item-1": {
-          "question": "Do you offer a free trial?",
-          "answer": "Yes, we offer a 7-day free trial."
+        "q1": {
+          "question": "Will removal change the faces I want to keep?",
+          "answer": "No. Brush removal only affects the areas you brush. Faces and features you don't touch stay exactly as they are."
         },
-        "item-2": {
-          "question": "How do I cancel my subscription?",
-          "answer": "You can cancel your subscription by visiting the billing page."
+        "q2": {
+          "question": "How do I avoid an \"AI look\" after removal?",
+          "answer": "Zoom to 100% and check edges, repeating patterns, and shadows. If it looks believable up close, it'll look great everywhere."
         },
-        "item-3": {
-          "question": "Can I change my plan?",
-          "answer": "Yes, you can change your plan at any time by visiting the billing page."
+        "q3": {
+          "question": "Will it work on complex backgrounds (trees, fences, crowds, patterns)?",
+          "answer": "Often yes—complex textures just require more careful brushing and a closer 100% check."
         },
-        "item-4": {
-          "question": "What is the refund policy?",
-          "answer": "We offer a 30-day money-back guarantee if you are not happy with our product."
+        "q4": {
+          "question": "What if people overlap or block each other (hair/hands/clothing)?",
+          "answer": "We handle overlap well. Zoom in, work in small sections, and you'll get clean edges even where people are touching or crossing."
         },
-        "item-5": {
-          "question": "Can't find what you're looking for?",
-          "answer": "Please contact our customer support team at support@mksaas.com"
+        "q5": {
+          "question": "Does it handle veils, lace, or semi-transparent materials?",
+          "answer": "It can, but thin/semi-transparent edges need careful brushing. Zoom in and work slowly around the edge details."
+        },
+        "q6": {
+          "question": "Does it remove shadows automatically?",
+          "answer": "Brush over both the person and their shadow. The tool fills both areas naturally—shadows don't get left behind."
+        },
+        "q7": {
+          "question": "What if the person I'm removing is hugging or touching someone I want to keep?",
+          "answer": "Brush carefully around the contact area. We handle these tricky spots well—zoom in and work in small sections for the cleanest result."
+        },
+        "q8": {
+          "question": "How do I remove people from photos online?",
+          "answer": "Upload your photo, brush over the people you want to remove, then download the result. Results update in real time as you brush."
+        },
+        "q9": {
+          "question": "Can I keep some people and remove others (keep X, remove Y)?",
+          "answer": "Yes. Brush only who you want gone—everyone else stays untouched."
+        },
+        "q10": {
+          "question": "Can I remove multiple people at once?",
+          "answer": "Yes. Remove people in sections for better control, especially in crowds or busy backgrounds."
+        },
+        "q11": {
+          "question": "Can I make a solo portrait from a group photo?",
+          "answer": "Yes. Remove others from the group shot, then export or re-frame for a clean solo portrait."
+        },
+        "q12": {
+          "question": "Can I remove crowds or background people from travel photos?",
+          "answer": "Yes. For large crowds, removing in smaller sections helps keep textures and lines looking natural."
+        },
+        "q13": {
+          "question": "Can I move people closer together after removal?",
+          "answer": "Yes. After brush removal, click \"Continue Editing\" to bring people together naturally—no cutting and pasting required."
+        },
+        "q14": {
+          "question": "Can I remove my ex from photos?",
+          "answer": "Yes. Brush over them, download a clean result, and keep the photo without the person."
+        },
+        "q15": {
+          "question": "Does it work on my phone?",
+          "answer": "Yes—use it in a modern mobile browser (Safari or Chrome). No app download needed."
+        },
+        "q16": {
+          "question": "Can I use a video screenshot or low-resolution image?",
+          "answer": "Yes. For better results, use \"Continue Editing\" to upscale after removal—details get sharper and the photo becomes print-ready."
+        },
+        "q17": {
+          "question": "Can I remove people from multiple photos at once (batch)?",
+          "answer": "Not yet. Each photo is processed individually for now."
+        },
+        "q18": {
+          "question": "How long does processing take?",
+          "answer": "Results appear in real time as you brush—usually within seconds. Export is ready as soon as you're happy with the result."
+        },
+        "q19": {
+          "question": "Do you store my photos?",
+          "answer": "Photos are stored temporarily for processing and automatically deleted within 24 hours. We do not share your photos publicly or use them to train AI models."
         }
       }
     },
@@ -1053,6 +1282,11 @@
       "description": "MkSaaS lets you make AI SaaS in days, simply and effortlessly",
       "primaryButton": "Get Started",
       "secondaryButton": "See Demo"
+    },
+    "finalCta": {
+      "title": "Ready to remove people from photos?",
+      "body": "Upload a photo, brush to remove, and download a clean result. Start with free credits—no signup required.",
+      "cta": "Upload Photo"
     }
   },
   "AITextPage": {
