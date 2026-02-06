@@ -1,6 +1,6 @@
 'use client';
 
-import { BeforeAfterSlider } from '@/components/ui/before-after-slider';
+import { BeforeAfterSlider } from './before-after-slider';
 import { cn } from '@/lib/utils';
 
 interface ScenarioCardProps {

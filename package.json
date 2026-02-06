@@ -2,7 +2,7 @@
   "name": "mksaas-template",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.26.1",
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "dev": "next dev -p 8787",
     "build": "next build",

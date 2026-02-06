@@ -31,10 +31,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Architecture
 
-This is a Next.js 15 full-stack SaaS application with the following key architectural components:
+This is a Next.js full-stack SaaS application with the following key architectural components:
 
 ### Core Stack
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js with App Router
 - **Database**: PostgreSQL with Drizzle ORM
 - **Authentication**: Better Auth with social providers (Google, GitHub)
 - **Payments**: Stripe integration with subscription and one-time payments
@@ -90,7 +90,7 @@ This is a Next.js 15 full-stack SaaS application with the following key architec
 6. Use Radix UI components for consistent UI
 7. Follow the established directory structure
 8. Use proper error handling with error.tsx and not-found.tsx
-9. Leverage Next.js 15 features like Server Actions
+9. Leverage Next.js features like Server Actions
 10. Use `next-safe-action` for secure form submissions
 
 ### Configuration
@@ -115,3 +115,4 @@ This is a Next.js 15 full-stack SaaS application with the following key architec
 - The app supports both light and dark themes
 - Content is managed through MDX files in the `content/` directory
 - The project includes comprehensive internationalization support
+- 对于公用组件，统一放在 src/components/custom 目录下

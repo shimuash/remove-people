@@ -2,7 +2,7 @@
 
 import Container from '@/components/layout/container';
 import { HeaderSection } from '@/components/layout/header-section';
-import { BeforeAfterSlider } from '@/components/ui/before-after-slider';
+import { BeforeAfterSlider } from './before-after-slider';
 import { cn } from '@/lib/utils';
 import type { MotionValue } from 'motion/react';
 import { motion, useScroll, useTransform } from 'motion/react';
